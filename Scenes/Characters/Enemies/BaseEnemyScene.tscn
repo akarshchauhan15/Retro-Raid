@@ -9,6 +9,8 @@ script = ExtResource("1_24do3")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=395674862]
 
+[node name="Turret" type="Sprite2D" parent="." unique_id=935187485]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=208896183]
 debug_color = Color(0, 0.6, 0.7019608, 0.19607843)
 
@@ -20,6 +22,7 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=435643344]
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1672952422]
+process_callback = 0
 wait_time = 2.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=440847410]

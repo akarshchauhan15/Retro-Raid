@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ck1koutreiit4" path="res://Scenes/Map/Centre.tscn" id="2_q1vot"]
 [ext_resource type="PackedScene" uid="uid://bv832pqfdkve7" path="res://Scenes/Characters/Enemies/Ship.tscn" id="3_q1vot"]
 [ext_resource type="PackedScene" uid="uid://npabx5ogx7a4" path="res://Scenes/Map/CentreIsland.tscn" id="4_jg8fe"]
+[ext_resource type="PackedScene" uid="uid://c8c54te5r3y8k" path="res://Scenes/Characters/Enemies/Tank.tscn" id="5_jg8fe"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_q1vot"]
 b = Vector2(0, 720)
@@ -43,8 +44,8 @@ position = Vector2(541, -1118)
 [node name="Ship2" parent="InGameSpawnedObjects/Enemies" unique_id=1625389637 instance=ExtResource("3_q1vot")]
 position = Vector2(828, -250)
 
-[node name="Ship3" parent="InGameSpawnedObjects/Enemies" unique_id=1206208129 instance=ExtResource("3_q1vot")]
-position = Vector2(564, -1813)
+[node name="Tank" parent="InGameSpawnedObjects/Enemies" unique_id=963257120 instance=ExtResource("5_jg8fe")]
+position = Vector2(959, -28)
 
 [node name="Projectiles" type="Node2D" parent="InGameSpawnedObjects" unique_id=141642842]
 

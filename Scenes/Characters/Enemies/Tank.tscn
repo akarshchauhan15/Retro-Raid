@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c8c54te5r3y8k"]
+
+[ext_resource type="PackedScene" uid="uid://22wyhlra16dm" path="res://Scenes/Characters/Enemies/BaseEnemyScene.tscn" id="1_1y848"]
+[ext_resource type="Texture2D" uid="uid://drcs1x1gvw7p" path="res://Assets/RasterArt/Exported/Tank.png" id="2_d2uvm"]
+[ext_resource type="Texture2D" uid="uid://dwxkhpll5b561" path="res://Assets/RasterArt/Exported/TankTurret.png" id="3_d2uvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2uvm"]
+size = Vector2(48, 32)
+
+[node name="Tank" unique_id=963257120 instance=ExtResource("1_1y848")]
+EnemySpecificScoreEnum = 2
+DetectionRadius = 300.0
+ShootingTimePeriod = 1.0
+
+[node name="Texture" parent="." index="0" unique_id=395674862]
+scale = Vector2(2, 2)
+texture = ExtResource("2_d2uvm")
+
+[node name="Turret" parent="." index="1" unique_id=935187485]
+position = Vector2(3.5, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("3_d2uvm")
+offset = Vector2(-5, 0)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=208896183]
+shape = SubResource("RectangleShape2D_d2uvm")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6" unique_id=440847410]
+rect = Rect2(-24, -16, 48, 32)

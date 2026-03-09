@@ -5,6 +5,7 @@ public partial class Enemies : Area2D
 {
     Marker2D BulletSpawnLocation;
     Timer CooldownTimer;
+    Sprite2D TurretSprite;
     Player Player;
 
     [Export]
@@ -20,10 +21,11 @@ public partial class Enemies : Area2D
     {
         BulletSpawnLocation = GetNode<Marker2D>("BulletSpawnLocation");
         CooldownTimer = GetNode<Timer>("CooldownTimer");
+        TurretSprite = GetNode<Sprite2D>("Turret");
         Player = GetTree().Root.GetNode<Player>("Main/Playground/Player");
 
         BodyEntered += OnCollisionWithPlayer;
-        GetNode<Area2D>("PlayerDetectionArea").BodyEntered += (Node2D Body) => { CooldownTimer.Start(); };
+        GetNode<Area2D>("PlayerDetectionArea").BodyEntered += (Node2D Body) => { CallDeferred(Enemies.MethodName.Shoot); CooldownTimer.Start(); };
         GetNode<Area2D>("PlayerDetectionArea").BodyExited += (Node2D Body) => { CooldownTimer.Stop(); };
         CooldownTimer.Timeout += Shoot;
         GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").ScreenExited += QueueFree;
@@ -37,6 +39,14 @@ public partial class Enemies : Area2D
         GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").Position = new Vector2(0, -DetectionRadius);
 
         SetCollisionMaskValue(1, Flying);
+    }
+    public override void _PhysicsProcess(double delta)
+    {
+        if (CooldownTimer.TimeLeft > 0)
+        {
+            TurretSprite.LookAt(Player.GlobalPosition);
+            TurretSprite.GlobalRotationDegrees += 180;
+        }
     }
     public void OnHit()
     {
@@ -54,7 +64,7 @@ public partial class Enemies : Area2D
         Bullet NewBullet = ResourceBag.BulletScene.Instantiate<Bullet>();
         NewBullet.Direction = BulletSpawnLocation.GlobalPosition.DirectionTo(Player.GlobalPosition);
         NewBullet.SetCollisionMaskValue(2, false);
-        GetNode<Node>("../../Projectiles").AddChild(NewBullet);
+        GetNode("../../Projectiles").AddChild(NewBullet);
         NewBullet.GlobalPosition = BulletSpawnLocation.GlobalPosition;
     }
 }

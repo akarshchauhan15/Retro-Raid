@@ -56,3 +56,7 @@ rect = Rect2(0, -8, 1280, 8)
 [node name="SpawnPositions" type="Node2D" parent="." unique_id=1582920222]
 
 [node name="Ship" type="Node2D" parent="SpawnPositions" unique_id=423741574]
+
+[node name="Tank" type="Node2D" parent="SpawnPositions" unique_id=1302202176]
+
+[node name="Helicopter" type="Node2D" parent="SpawnPositions" unique_id=284826893]
