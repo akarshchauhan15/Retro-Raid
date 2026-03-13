@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://orrtvbgvjgub"]
+
+[ext_resource type="FontFile" uid="uid://b5v15uldilm4" path="res://Assets/Fonts/Aldrich/Aldrich-Regular.ttf" id="1_cq8uk"]
+[ext_resource type="Script" uid="uid://bnytwndlrkrqx" path="res://Scripts/Hud/InfoLabel.cs" id="2_mbacu"]
+
+[node name="InfoLabel" type="Label" unique_id=1640128481]
+custom_minimum_size = Vector2(115, 16)
+offset_right = 115.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("1_cq8uk")
+script = ExtResource("2_mbacu")
+
+[node name="Timer" type="Timer" parent="." unique_id=157098934]
+wait_time = 3.0
+one_shot = true
+autostart = true

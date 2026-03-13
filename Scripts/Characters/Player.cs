@@ -8,6 +8,8 @@ public partial class Player : CharacterBody2D
     public delegate void ScoreChangedEventHandler();
     [Signal]
     public delegate void ShotsFiredEventHandler();
+    [Signal]
+    public delegate void EventHappenedEventHandler(int Type);
 
     Camera2D Camera;
     Area2D AutoAimZone;
@@ -15,6 +17,7 @@ public partial class Player : CharacterBody2D
     Marker2D BulletSpawnLocation;
 
     public float Fuel = 100f;
+    public int Health = 3;
     public int Score = 0;
 
     Vector2 MaxVelocity = new(700, 500);

@@ -46,11 +46,11 @@ border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ok6ej"]
-bg_color = Color(0.22381452, 0.22748846, 0.22906083, 1)
+bg_color = Color(0.17042997, 0.1736454, 0.1736454, 0.88235295)
 border_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82n6s"]
-bg_color = Color(0.5058871, 0.52363014, 0.54390275, 1)
+bg_color = Color(0.5233196, 0.54468346, 0.5617915, 1)
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7wgx"]
@@ -204,12 +204,13 @@ value = 50.0
 [node name="CooldownMeter" type="ProgressBar" parent="GameOverlay" unique_id=637176291]
 modulate = Color(1, 1, 1, 0.49019608)
 layout_mode = 0
-offset_left = 15.0
+offset_left = 17.0
 offset_top = 11.0
-offset_right = 107.0
+offset_right = 109.0
 offset_bottom = 34.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ok6ej")
 theme_override_styles/fill = SubResource("StyleBoxFlat_82n6s")
+value = 100.0
 show_percentage = false
 
 [node name="ScoreLabel" type="Label" parent="GameOverlay" unique_id=1242918494]
@@ -222,6 +223,14 @@ offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("4_p2ou8")
 theme_override_font_sizes/font_size = 24
 text = "00"
+
+[node name="EventContainer" type="VBoxContainer" parent="GameOverlay" unique_id=365072304]
+modulate = Color(1, 1, 1, 0.78431374)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 50.0
+offset_right = 57.0
+offset_bottom = 90.0
 
 [node name="PauseMenu" type="Panel" parent="." unique_id=695202549]
 process_mode = 3
