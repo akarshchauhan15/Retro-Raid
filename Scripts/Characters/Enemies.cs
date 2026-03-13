@@ -15,6 +15,8 @@ public partial class Enemies : Area2D
     [Export]
     float ShootingTimePeriod = 2.0f;
     [Export]
+    float FireInaccuracy = 0.2f;
+    [Export]
     bool Flying = false;
 
     public override void _Ready()
@@ -62,8 +64,12 @@ public partial class Enemies : Area2D
     private void Shoot()
     {
         Bullet NewBullet = ResourceBag.BulletScene.Instantiate<Bullet>();
-        NewBullet.Direction = BulletSpawnLocation.GlobalPosition.DirectionTo(Player.GlobalPosition);
+
+        float Inaccuracy = (float) GD.RandRange(-1d, 1d) * FireInaccuracy;
+
+        NewBullet.Direction = BulletSpawnLocation.GlobalPosition.DirectionTo(Player.GlobalPosition).Rotated(Inaccuracy);
         NewBullet.SetCollisionMaskValue(2, false);
+
         GetNode("../../Projectiles").AddChild(NewBullet);
         NewBullet.GlobalPosition = BulletSpawnLocation.GlobalPosition;
     }
