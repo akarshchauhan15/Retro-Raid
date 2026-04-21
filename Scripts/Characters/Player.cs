@@ -9,6 +9,8 @@ public partial class Player : CharacterBody2D
     [Signal]
     public delegate void HealthChangedEventHandler();
     [Signal]
+    public delegate void ShieldChangedEventHandler();
+    [Signal]
     public delegate void ShotsFiredEventHandler();
     [Signal]
     public delegate void PickupedEventHandler(int Type);
@@ -20,6 +22,7 @@ public partial class Player : CharacterBody2D
 
     public float Fuel = 100f;
     public int Health = 3;
+    public int Shield = 1;
     public int Score = 0;
 
     Vector2 MaxVelocity = new(700, 500);
@@ -46,8 +49,14 @@ public partial class Player : CharacterBody2D
             Shoot();
     }
     public void OnHit()
-    {
-        Health -= 1;
+    {   
+        if (Shield > 0)
+        {
+            Shield-=1;
+            EmitSignal(SignalName.ShieldChanged);
+            return;
+        }
+        Health-=1;
         EmitSignal(SignalName.HealthChanged);
     }
     public void AddScore(int Value)
@@ -96,6 +105,7 @@ public partial class Player : CharacterBody2D
             NewBullet.Direction = new Vector2(Velocity.X * 0.0001f, -1).Normalized();
 
         NewBullet.SetCollisionMaskValue(1, false);
+        NewBullet.SetCollisionMaskValue(2, true);
 
         NewBullet.Speed += Mathf.Abs(Playground.SliderSpeed);
         NewBullet.GlobalPosition = BulletSpawnLocation.GlobalPosition;  

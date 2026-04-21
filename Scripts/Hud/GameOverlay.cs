@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 public partial class GameOverlay : Control
 {
@@ -7,6 +8,7 @@ public partial class GameOverlay : Control
     ProgressBar FuelMeter;
     ProgressBar HealthMeter;
     ProgressBar CooldownMeter;
+    HBoxContainer Shields;
     VBoxContainer EventContainer;
     Label ScoreLabel;
 
@@ -14,15 +16,17 @@ public partial class GameOverlay : Control
     {
         Player = GetTree().Root.GetNode<Player>("Main/Playground/Player");
 
-        FuelMeter = GetNode<ProgressBar>("FuelMeter");
-        HealthMeter = GetNode<ProgressBar>("HealthMeter");
-        CooldownMeter = GetNode<ProgressBar>("CooldownMeter");
+        FuelMeter = GetNode<ProgressBar>("Bar/FuelMeter");
+        HealthMeter = GetNode<ProgressBar>("Bar/HealthMeter");
+        CooldownMeter = GetNode<ProgressBar>("Bar/CooldownMeter");
+        Shields = GetNode<HBoxContainer>("Bar/Shields");
         EventContainer = GetNode<VBoxContainer>("EventContainer");
 
-        ScoreLabel = GetNode<Label>("ScoreLabel");
+        ScoreLabel = GetNode<Label>("Bar/ScoreLabel");
 
         Player.ScoreChanged += () => ScoreLabel.Text = Player.Score.ToString();
         Player.HealthChanged += () => HealthMeter.Value = Player.Health;
+        Player.ShieldChanged += UpdateShields;
         Player.ShotsFired += StartCooldown;
         Player.Pickuped += AddEventHappened;
     }
@@ -34,6 +38,11 @@ public partial class GameOverlay : Control
     {
         Tween tween = CreateTween();
         tween.TweenProperty(CooldownMeter, ProgressBar.PropertyName.Value.ToString(), 100, Player.CooldownTimer.WaitTime).From(0).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Quad);
+    }
+    private void UpdateShields()
+    {
+        for (int i = 0; i<Player.Shield; i++) ((Control)Shields.GetChild(i)).Show();
+        for (int i = Player.Shield; i<3; i++) ((Control)Shields.GetChild(i)).Hide();
     }
     private void AddEventHappened(int Type)
     {

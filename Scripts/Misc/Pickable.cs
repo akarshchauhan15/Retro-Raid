@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 public partial class Pickable : Area2D
 {
@@ -33,6 +34,11 @@ public partial class Pickable : Area2D
             case PickableType.Health:
                 Player.Health = Math.Min(Player.Health + 1, 3);
                 Player.EmitSignal(Player.SignalName.HealthChanged);
+                return;
+            
+            case PickableType.Shield:
+                Player.Shield = Math.Min(Player.Shield + 1, 3);
+                Player.EmitSignal(Player.SignalName.ShieldChanged);
                 return;
 
         }

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bng5wusfysijk" path="res://Scripts/Hud/GameOverlay.cs" id="3_ywdxv"]
 [ext_resource type="FontFile" uid="uid://b5v15uldilm4" path="res://Assets/Fonts/Aldrich/Aldrich-Regular.ttf" id="4_p2ou8"]
 [ext_resource type="Script" uid="uid://dabetad3vjnkp" path="res://Scripts/Hud/PauseMenu.cs" id="5_kccyi"]
+[ext_resource type="Texture2D" uid="uid://b1nbpuertlt48" path="res://Assets/RasterArt/Exported/Shield.png" id="5_mfj1d"]
 [ext_resource type="PackedScene" uid="uid://b67qgkmesk40u" path="res://Resources/CustomNode/Slide.tscn" id="6_v4pvl"]
 [ext_resource type="Script" uid="uid://2q3r3lahcni4" path="res://Scripts/Hud/MenuSlide.cs" id="7_nbero"]
 [ext_resource type="Texture2D" uid="uid://dcibkcxmkqp1q" path="res://Assets/VectorArt/Icons/Pause.svg" id="7_u1qau"]
@@ -46,11 +47,11 @@ border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ok6ej"]
-bg_color = Color(0.17042997, 0.1736454, 0.1736454, 0.88235295)
-border_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
+bg_color = Color(0.21910095, 0.3019888, 0.4807313, 1)
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82n6s"]
-bg_color = Color(0.5233196, 0.54468346, 0.5617915, 1)
+bg_color = Color(0.38293156, 0.4897235, 0.715668, 1)
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7wgx"]
@@ -176,31 +177,49 @@ theme = ExtResource("2_wgaer")
 text = "EXIT"
 
 [node name="GameOverlay" type="Control" parent="." unique_id=1399946451]
-modulate = Color(1, 1, 1, 0.627451)
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_ywdxv")
 
-[node name="FuelMeter" type="ProgressBar" parent="GameOverlay" unique_id=2010502602]
+[node name="Bar" type="ColorRect" parent="GameOverlay" unique_id=412907357]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -35.0
+offset_right = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.15686275, 0.16470589, 0.21568628, 1)
+
+[node name="FuelMeter" type="ProgressBar" parent="GameOverlay/Bar" unique_id=2010502602]
 modulate = Color(1, 1, 1, 0.49019608)
 layout_mode = 0
 offset_left = 8.0
-offset_top = 692.0
+offset_top = 7.0
 offset_right = 140.0
-offset_bottom = 713.0
+offset_bottom = 28.0
 theme_override_fonts/font = ExtResource("4_p2ou8")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/background = SubResource("StyleBoxFlat_q87le")
 theme_override_styles/fill = SubResource("StyleBoxFlat_v4pvl")
 value = 50.0
 
-[node name="HealthMeter" type="ProgressBar" parent="GameOverlay" unique_id=1819359971]
+[node name="HealthMeter" type="ProgressBar" parent="GameOverlay/Bar" unique_id=1819359971]
 modulate = Color(1, 1, 1, 0.49019608)
 layout_mode = 0
 offset_left = 148.0
-offset_top = 692.0
+offset_top = 7.0
 offset_right = 280.0
-offset_bottom = 713.0
+offset_bottom = 28.0
 theme_override_fonts/font = ExtResource("4_p2ou8")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/background = SubResource("StyleBoxFlat_60whd")
@@ -208,28 +227,68 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mfj1d")
 max_value = 3.0
 value = 3.0
 
-[node name="CooldownMeter" type="ProgressBar" parent="GameOverlay" unique_id=637176291]
+[node name="CooldownMeter" type="ProgressBar" parent="GameOverlay/Bar" unique_id=637176291]
 modulate = Color(1, 1, 1, 0.49019608)
 layout_mode = 0
-offset_left = 17.0
-offset_top = 11.0
-offset_right = 109.0
-offset_bottom = 34.0
+offset_left = 1171.0
+offset_top = 9.0
+offset_right = 1271.0
+offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ok6ej")
 theme_override_styles/fill = SubResource("StyleBoxFlat_82n6s")
 value = 100.0
+fill_mode = 1
 show_percentage = false
 
-[node name="ScoreLabel" type="Label" parent="GameOverlay" unique_id=1242918494]
+[node name="ScoreLabel" type="Label" parent="GameOverlay/Bar" unique_id=1242918494]
 modulate = Color(1, 1, 1, 0.88235295)
 layout_mode = 1
-offset_left = 17.0
-offset_top = 13.0
-offset_right = 75.0
-offset_bottom = 37.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -10.0
+offset_right = 50.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_p2ou8")
 theme_override_font_sizes/font_size = 24
 text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shields" type="HBoxContainer" parent="GameOverlay/Bar" unique_id=1501762495]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 7.0
+offset_right = 378.0
+offset_bottom = 28.0
+
+[node name="1" type="TextureRect" parent="GameOverlay/Bar/Shields" unique_id=200670357]
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+texture = ExtResource("5_mfj1d")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="2" type="TextureRect" parent="GameOverlay/Bar/Shields" unique_id=579360989]
+visible = false
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+texture = ExtResource("5_mfj1d")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="3" type="TextureRect" parent="GameOverlay/Bar/Shields" unique_id=1351386665]
+visible = false
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+texture = ExtResource("5_mfj1d")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="EventContainer" type="VBoxContainer" parent="GameOverlay" unique_id=365072304]
 modulate = Color(1, 1, 1, 0.78431374)
