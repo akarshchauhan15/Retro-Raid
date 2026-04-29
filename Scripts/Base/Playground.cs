@@ -10,6 +10,7 @@ public partial class Playground : Node2D
 
     Random Random = new();
     public static float SliderSpeed = 300.0f;
+    public static bool isPlaying = false;
 
     public override void _Ready()
     {
@@ -23,7 +24,16 @@ public partial class Playground : Node2D
     }
     public override void _Process(double delta)
     {
+        if (isPlaying)
         Slider.GlobalPosition += Vector2.Down * SliderSpeed * (float) delta;
+    }
+    public void InitialStart()
+    {
+        isPlaying = true;
+        Tween tween = CreateTween();
+        tween.TweenMethod(Callable.From<float>(Value => SliderSpeed = Value), 0.0f, 300.0f, 0.6f);
+
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("Fly");
     }
     public void SpawnModularLevelComponent(Vector2 SacrificedPosition)
     {

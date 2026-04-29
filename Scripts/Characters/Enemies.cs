@@ -61,7 +61,6 @@ public partial class Enemies : Area2D
     }
     public void OnHit()
     {
-        GD.Print("Hit");
         QueueFree();
         Player.AddScore(GameConstants.ScoreValues[EnemySpecificScoreEnum]);
         if (SpawnPickableOnFree == null) return;

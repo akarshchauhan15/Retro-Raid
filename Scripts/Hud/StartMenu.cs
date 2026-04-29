@@ -23,5 +23,7 @@ public partial class StartMenu : Control
     private void StartGame()
     {
         Hide();
+        GetNode<AnimationPlayer>("../GameOverlay/AnimationPlayer").Play("OverlayAppear");
+        GetTree().Root.GetNode<Playground>("Main/Playground").InitialStart();
     }
 }

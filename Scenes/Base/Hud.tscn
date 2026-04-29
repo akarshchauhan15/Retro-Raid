@@ -54,6 +54,247 @@ border_color = Color(1, 1, 1, 1)
 bg_color = Color(0.38293156, 0.4897235, 0.715668, 1)
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="Animation" id="Animation_mfj1d"]
+resource_name = "OverlayAppear"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 720), Vector2(0, 685)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bar/ScoreLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.88235295)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bar/HealthMeter:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.0666667, 1.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.49019608)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bar/FuelMeter:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 1.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.49019608)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bar/Shields:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.9000001, 2.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bar/CooldownMeter:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.4901961)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Bar/CooldownMeter:value")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.7333333, 2.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Bar/HealthMeter:value")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.3333334, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Bar/FuelMeter:value")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.0333333, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ok6ej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 720)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bar/ScoreLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.88235295)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bar/HealthMeter:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.4901961)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bar/HealthMeter:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bar/Shields:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bar/FuelMeter:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.4901961)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Bar/FuelMeter:value")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Bar/CooldownMeter:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.4901961)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Bar/CooldownMeter:value")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [100.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82n6s"]
+_data = {
+&"OverlayAppear": SubResource("Animation_mfj1d"),
+&"RESET": SubResource("Animation_ok6ej")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7wgx"]
 bg_color = Color(0, 0, 0, 0.627451)
 
@@ -67,7 +308,15 @@ border_width_bottom = 1
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7d0a"]
 bg_color = Color(0.11130116, 0.13072228, 0.21835473, 0.78431374)
 
+[sub_resource type="InputEventKey" id="InputEventKey_mfj1d"]
+device = -1
+keycode = 4194342
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ok6ej"]
+button_index = 4
+
 [sub_resource type="Shortcut" id="Shortcut_n7wgx"]
+events = [SubResource("InputEventKey_mfj1d"), SubResource("InputEventJoypadButton_ok6ej")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_60whd"]
 action = &"Pause"
@@ -91,7 +340,6 @@ events = [SubResource("InputEventKey_2btik"), SubResource("InputEventJoypadButto
 [node name="HUD" type="CanvasLayer" unique_id=704814869]
 
 [node name="StartMenu" type="Control" parent="." unique_id=1325218576]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ywdxv")
@@ -194,14 +442,14 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -640.0
-offset_top = -35.0
 offset_right = 640.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.15686275, 0.16470589, 0.21568628, 1)
 
 [node name="FuelMeter" type="ProgressBar" parent="GameOverlay/Bar" unique_id=2010502602]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(1, 1, 1, 0.4901961)
 layout_mode = 0
 offset_left = 8.0
 offset_top = 7.0
@@ -214,7 +462,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_v4pvl")
 value = 50.0
 
 [node name="HealthMeter" type="ProgressBar" parent="GameOverlay/Bar" unique_id=1819359971]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(1, 1, 1, 0.4901961)
 layout_mode = 0
 offset_left = 148.0
 offset_top = 7.0
@@ -228,7 +476,7 @@ max_value = 3.0
 value = 3.0
 
 [node name="CooldownMeter" type="ProgressBar" parent="GameOverlay/Bar" unique_id=637176291]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(1, 1, 1, 0.4901961)
 layout_mode = 0
 offset_left = 1171.0
 offset_top = 9.0
@@ -297,6 +545,9 @@ offset_left = 17.0
 offset_top = 50.0
 offset_right = 57.0
 offset_bottom = 90.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverlay" unique_id=1424754525]
+libraries/ = SubResource("AnimationLibrary_82n6s")
 
 [node name="PauseMenu" type="Panel" parent="." unique_id=695202549]
 process_mode = 3

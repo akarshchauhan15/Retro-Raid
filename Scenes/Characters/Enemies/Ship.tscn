@@ -4,25 +4,26 @@
 [ext_resource type="Texture2D" uid="uid://dofgkm4ccsmdv" path="res://Assets/RasterArt/Exported/Ship.png" id="2_8hqrk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lkf8"]
-size = Vector2(24, 68)
+size = Vector2(30, 84)
 
 [node name="Ship" unique_id=1133445006 instance=ExtResource("1_pptcy")]
 DetectionRadius = 400.0
 ShootingTimePeriod = 1.0
 
 [node name="Texture" parent="." index="0" unique_id=395674862]
-scale = Vector2(1.2, 1.2)
+scale = Vector2(1.4, 1.4)
 texture = ExtResource("2_8hqrk")
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=208896183]
+[node name="CollisionShape2D" parent="." index="2" unique_id=208896183]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_0lkf8")
 
-[node name="BulletSpawnLocation" parent="." index="2" unique_id=1848040344]
+[node name="BulletSpawnLocation" parent="." index="3" unique_id=1848040344]
 position = Vector2(0, 13)
 
-[node name="CooldownTimer" parent="." index="4" unique_id=1672952422]
+[node name="CooldownTimer" parent="." index="5" unique_id=1672952422]
 wait_time = 1.0
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="5" unique_id=440847410]
-position = Vector2(0, -24)
-rect = Rect2(-10, -10, 20, 4)
+[node name="VisibleOnScreenNotifier2D" parent="." index="6" unique_id=440847410]
+position = Vector2(0, -36)
+rect = Rect2(-16, -10, 32, 4)

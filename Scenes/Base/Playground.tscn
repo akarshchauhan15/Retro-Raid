@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://b2lmq0c7rqqxp"]
 
 [ext_resource type="Script" uid="uid://b83rcmv3uv5yr" path="res://Scripts/Base/Playground.cs" id="1_27kmo"]
+[ext_resource type="PackedScene" uid="uid://cdt6ks3en53e1" path="res://Scenes/Map/Airport.tscn" id="2_6qj1y"]
 [ext_resource type="PackedScene" uid="uid://e3gha282lp5m" path="res://Scenes/Characters/Player.tscn" id="2_o0c3l"]
-[ext_resource type="PackedScene" uid="uid://ck1koutreiit4" path="res://Scenes/Map/Centre.tscn" id="2_q1vot"]
-[ext_resource type="PackedScene" uid="uid://bv832pqfdkve7" path="res://Scenes/Characters/Enemies/Ship.tscn" id="3_q1vot"]
-[ext_resource type="PackedScene" uid="uid://npabx5ogx7a4" path="res://Scenes/Map/CentreIsland.tscn" id="4_jg8fe"]
-[ext_resource type="PackedScene" uid="uid://c8c54te5r3y8k" path="res://Scenes/Characters/Enemies/Tank.tscn" id="5_jg8fe"]
+[ext_resource type="PackedScene" uid="uid://ck1koutreiit4" path="res://Scenes/Map/Centre.tscn" id="3_vgxkg"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_q1vot"]
 b = Vector2(0, 720)
@@ -19,6 +17,126 @@ glow_enabled = true
 glow_intensity = 1.25
 glow_blend_mode = 3
 
+[sub_resource type="Animation" id="Animation_q1vot"]
+resource_name = "Default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(897, 0, 0, 0.6666667, -45),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(500, 0, 0, 0.8666667, -4),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_6qj1y"]
+resource_name = "Fly"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(897, 0, 0, 0.6666667, -45, 640, -0.9162066, 33, 0.25, 0),
+"times": PackedFloat32Array(0.73333335, 2.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(500, 0, 0, 0.43333328, 0.5, 560, -0.70000005, 1, 0.25, 0),
+"times": PackedFloat32Array(0.73333335, 2.499479)
+}
+
+[sub_resource type="Animation" id="Animation_vgxkg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1vot"]
+_data = {
+&"Default": SubResource("Animation_q1vot"),
+&"Fly": SubResource("Animation_6qj1y"),
+&"RESET": SubResource("Animation_vgxkg")
+}
+
 [node name="Playground" type="Node2D" unique_id=1109740961]
 script = ExtResource("1_27kmo")
 
@@ -28,24 +146,15 @@ z_as_relative = false
 
 [node name="LevelContainer" type="Node2D" parent="InGameSpawnedObjects" unique_id=2118313280]
 
-[node name="Centre" parent="InGameSpawnedObjects/LevelContainer" unique_id=146130966 instance=ExtResource("2_q1vot")]
-position = Vector2(0, -1440)
+[node name="Airport" parent="InGameSpawnedObjects/LevelContainer" unique_id=1253519410 instance=ExtResource("2_6qj1y")]
 
-[node name="Basic1" parent="InGameSpawnedObjects/LevelContainer" unique_id=1164886481 instance=ExtResource("2_q1vot")]
-
-[node name="BaseMapComponent" parent="InGameSpawnedObjects/LevelContainer" unique_id=1771049677 instance=ExtResource("4_jg8fe")]
+[node name="Centre" parent="InGameSpawnedObjects/LevelContainer" unique_id=1695746459 instance=ExtResource("3_vgxkg")]
 position = Vector2(0, -720)
 
+[node name="Centre2" parent="InGameSpawnedObjects/LevelContainer" unique_id=1714929284 instance=ExtResource("3_vgxkg")]
+position = Vector2(0, -1440)
+
 [node name="Enemies" type="Node2D" parent="InGameSpawnedObjects" unique_id=22902286]
-
-[node name="Ship" parent="InGameSpawnedObjects/Enemies" unique_id=1133445006 instance=ExtResource("3_q1vot")]
-position = Vector2(541, -1118)
-
-[node name="Ship2" parent="InGameSpawnedObjects/Enemies" unique_id=1625389637 instance=ExtResource("3_q1vot")]
-position = Vector2(828, -250)
-
-[node name="Tank" parent="InGameSpawnedObjects/Enemies" unique_id=963257120 instance=ExtResource("5_jg8fe")]
-position = Vector2(959, -28)
 
 [node name="Projectiles" type="Node2D" parent="InGameSpawnedObjects" unique_id=141642842]
 
@@ -62,7 +171,7 @@ shape = SubResource("SegmentShape2D_jg8fe")
 
 [node name="Player" parent="." unique_id=525242302 instance=ExtResource("2_o0c3l")]
 unique_name_in_owner = true
-position = Vector2(640, 560)
+scale = Vector2(0.8, 0.8)
 
 [node name="Camera" type="Camera2D" parent="." unique_id=799571054]
 unique_name_in_owner = true
@@ -76,3 +185,7 @@ autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=350163319]
 environment = SubResource("Environment_q1vot")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=997213309]
+libraries/ = SubResource("AnimationLibrary_q1vot")
+autoplay = &"Default"
