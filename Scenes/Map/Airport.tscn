@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cdt6ks3en53e1"]
+
+[ext_resource type="PackedScene" uid="uid://yaf7kqv7prr3" path="res://Scenes/Map/BaseMapComponent.tscn" id="1_rxsyh"]
+[ext_resource type="Texture2D" uid="uid://b5v1sgwnkxaa6" path="res://Assets/RasterArt/Exported/Airport.png" id="2_5y017"]
+
+[node name="Airport" unique_id=1253519410 instance=ExtResource("1_rxsyh")]
+
+[node name="Airport" type="Sprite2D" parent="." index="4" unique_id=600513982]
+position = Vector2(939, 357.00003)
+scale = Vector2(5, 5)
+texture = ExtResource("2_5y017")
