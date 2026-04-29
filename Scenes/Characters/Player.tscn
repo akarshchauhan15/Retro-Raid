@@ -4,10 +4,39 @@
 [ext_resource type="Texture2D" uid="uid://cb40v305qwofa" path="res://Assets/RasterArt/Exported/Player.png" id="1_gjot8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0el0d"]
-size = Vector2(38.5, 16)
+size = Vector2(44, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5en2"]
-size = Vector2(10, 51)
+size = Vector2(8, 52)
+
+[sub_resource type="Gradient" id="Gradient_0el0d"]
+offsets = PackedFloat32Array(0.22260274, 0.45890412, 0.8184931, 0.98630136)
+colors = PackedColorArray(0.9657801, 0.17287463, 0.2259244, 1, 0.5366695, 0.40833375, 0.1614097, 1, 0.14215714, 0.25468004, 0.5243238, 1, 0.043137256, 0.101960786, 0.23921569, 0.34117648)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o5en2"]
+gradient = SubResource("Gradient_0el0d")
+
+[sub_resource type="Curve" id="Curve_7pt4t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 0.6), -1.2617743, -1.2617743, 0, 0, Vector2(0.99999, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_7qdam"]
+curve = SubResource("Curve_7pt4t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0el0d"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 0.5, 1)
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 100.0
+initial_velocity_max = 140.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.5
+scale_max = 4.5
+scale_curve = SubResource("CurveTexture_7qdam")
+color_ramp = SubResource("GradientTexture1D_o5en2")
 
 [node name="Player" type="CharacterBody2D" unique_id=1114247732]
 collision_mask = 30
@@ -15,19 +44,21 @@ motion_mode = 1
 script = ExtResource("1_0el0d")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=703639098]
+scale = Vector2(2, 2)
 texture = ExtResource("1_gjot8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1094175036]
-position = Vector2(0.25, 7)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_0el0d")
 debug_color = Color(0, 0.6, 0.69803923, 0.101960786)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2085687640]
-position = Vector2(0, 1.5)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_o5en2")
 debug_color = Color(0, 0.6, 0.7019608, 0.101960786)
 
 [node name="AutoAimZone" type="Area2D" parent="." unique_id=1669890731]
+position = Vector2(0, 2)
 collision_layer = 0
 collision_mask = 2
 
@@ -41,3 +72,7 @@ position = Vector2(0, -27)
 [node name="CooldownTimer" type="Timer" parent="." unique_id=701057194]
 wait_time = 0.4
 one_shot = true
+
+[node name="Particles" type="GPUParticles2D" parent="." unique_id=749213438]
+position = Vector2(0, 25)
+process_material = SubResource("ParticleProcessMaterial_0el0d")

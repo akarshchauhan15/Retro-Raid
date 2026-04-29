@@ -17,6 +17,8 @@ public partial class Player : CharacterBody2D
 
     Camera2D Camera;
     Area2D AutoAimZone;
+    Sprite2D Texture;
+    GpuParticles2D Particles;
     public Timer CooldownTimer;
     Marker2D BulletSpawnLocation;
 
@@ -34,13 +36,16 @@ public partial class Player : CharacterBody2D
     {
         Camera = GetNode<Camera2D>("%Camera");
         AutoAimZone = GetNode<Area2D>("AutoAimZone");
+        Texture = GetNode<Sprite2D>("Sprite2D");
+        Particles = GetNode<GpuParticles2D>("Particles");
         CooldownTimer = GetNode<Timer>("CooldownTimer");
         BulletSpawnLocation = GetNode<Marker2D>("BulletSpawnLocation");
     }
     public override void _Process(double delta)
     {
-        CheckMovement(delta);
         AlignCamera();
+        if (!Playground.isPlaying)  return;
+        CheckMovement(delta);
         UpdateStats(delta);
     }
     public override void _UnhandledInput(InputEvent @event)
@@ -81,6 +86,10 @@ public partial class Player : CharacterBody2D
             Playground.SliderSpeed = Mathf.MoveToward(Playground.SliderSpeed, MaxVelocity.Y, Mathf.Abs(Direction.Y) * Acceleration.Y * (float)delta);
         else if (Direction.Y > 0)
             Playground.SliderSpeed = Mathf.MoveToward(Playground.SliderSpeed, MinVelocityY, Mathf.Abs(Direction.Y) * Acceleration.Y * (float)delta);
+
+        Texture.Rotation = Velocity.X / (Playground.SliderSpeed + 400) * 0.2f;
+
+        Particles.AmountRatio = 0.6f + (Playground.SliderSpeed - 250) / 1000;
 
         MoveAndSlide();
     }
