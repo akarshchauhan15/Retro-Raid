@@ -78,7 +78,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(897, 0, 0, 0.6666667, -45, 640, -0.9162066, 33, 0.25, 0),
+"points": PackedFloat32Array(897, 0, 0, 1.0666666, 3.9337769, 640, -0.9162066, 33, 0.25, 0),
 "times": PackedFloat32Array(0.73333335, 2.5)
 }
 tracks/2/type = "bezier"
@@ -151,9 +151,6 @@ z_as_relative = false
 [node name="Centre" parent="InGameSpawnedObjects/LevelContainer" unique_id=1695746459 instance=ExtResource("3_vgxkg")]
 position = Vector2(0, -720)
 
-[node name="Centre2" parent="InGameSpawnedObjects/LevelContainer" unique_id=1714929284 instance=ExtResource("3_vgxkg")]
-position = Vector2(0, -1440)
-
 [node name="Enemies" type="Node2D" parent="InGameSpawnedObjects" unique_id=22902286]
 
 [node name="Projectiles" type="Node2D" parent="InGameSpawnedObjects" unique_id=141642842]
@@ -181,7 +178,6 @@ position = Vector2(640, 360)
 
 [node name="JetSpawnTimer" type="Timer" parent="Timers" unique_id=1887718099]
 wait_time = 10.0
-autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=350163319]
 environment = SubResource("Environment_q1vot")

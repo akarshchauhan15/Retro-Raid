@@ -21,6 +21,7 @@ public partial class Playground : Node2D
         GetNode<Timer>("Timers/JetSpawnTimer").Timeout += SpawnEnemyJets;
 
         NextMapPackedComponent = BaseMapDefaults.ModularLevelScenes[0];
+        SpawnModularLevelComponent(Vector2.Down * 720);
     }
     public override void _Process(double delta)
     {
@@ -34,6 +35,8 @@ public partial class Playground : Node2D
         tween.TweenMethod(Callable.From<float>(Value => SliderSpeed = Value), 0.0f, 300.0f, 0.6f);
 
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Fly");
+
+        GetNode<Timer>("Timers/JetSpawnTimer").Start();
     }
     public void SpawnModularLevelComponent(Vector2 SacrificedPosition)
     {

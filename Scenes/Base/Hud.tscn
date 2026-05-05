@@ -424,6 +424,32 @@ size_flags_horizontal = 3
 theme = ExtResource("2_wgaer")
 text = "EXIT"
 
+[node name="GamemodeContainer" type="VBoxContainer" parent="StartMenu" unique_id=842984488]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = 440.0
+offset_right = 440.0
+offset_bottom = 496.0
+
+[node name="Campaign" type="Button" parent="StartMenu/GamemodeContainer" unique_id=2036435359]
+custom_minimum_size = Vector2(200, 56)
+layout_mode = 2
+theme = ExtResource("2_wgaer")
+text = "PLAY CAMPAIGN"
+
+[node name="Zen" type="Button" parent="StartMenu/GamemodeContainer" unique_id=1310305273]
+custom_minimum_size = Vector2(200, 56)
+layout_mode = 2
+theme = ExtResource("2_wgaer")
+text = "PLAY ZEN (ENDLESS)"
+
+[node name="BackButton" type="Button" parent="StartMenu/GamemodeContainer" unique_id=1424959758]
+custom_minimum_size = Vector2(200, 56)
+layout_mode = 2
+theme = ExtResource("2_wgaer")
+text = "BACK"
+
 [node name="GameOverlay" type="Control" parent="." unique_id=1399946451]
 layout_mode = 3
 anchors_preset = 15
