@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cm62wb8h3icqd"]
+
+[ext_resource type="Script" uid="uid://bnxsgurs4smyf" path="res://Scripts/Map/BaseLevel.cs" id="1_4e6v8"]
+[ext_resource type="Texture2D" uid="uid://ccnvet5hm61p5" path="res://Assets/RasterArt/Exported/Grass.png" id="2_0uk67"]
+[ext_resource type="Texture2D" uid="uid://ba8h38d6xj8ks" path="res://Assets/RasterArt/Exported/Water.png" id="3_1iatc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_odun2"]
+texture = ExtResource("3_1iatc")
+texture_region_size = Vector2i(30, 30)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+3:4/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+4:4/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+7:8/0 = 0
+6:8/0 = 0
+6:7/0 = 0
+8:7/0 = 0
+8:6/0 = 0
+8:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nig0n"]
+tile_size = Vector2i(30, 30)
+sources/0 = SubResource("TileSetAtlasSource_odun2")
+
+[node name="BaseLevel" type="Node2D" unique_id=480106617]
+script = ExtResource("1_4e6v8")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1945926150]
+texture_repeat = 2
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0uk67")
+region_enabled = true
+region_rect = Rect2(-15, 0, 720, 360)
+metadata/_edit_lock_ = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=321826096]
+position = Vector2(10, 0)
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_nig0n")
+metadata/_edit_lock_ = true
+
+[node name="SpawnPositions" type="Node2D" parent="." unique_id=947679765]
+
+[node name="Ship" type="Node2D" parent="SpawnPositions" unique_id=2140768094]
+
+[node name="Tank" type="Node2D" parent="SpawnPositions" unique_id=1973535327]
+
+[node name="Helicopter" type="Node2D" parent="SpawnPositions" unique_id=2087677031]
