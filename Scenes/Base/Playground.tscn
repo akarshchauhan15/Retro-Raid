@@ -151,6 +151,9 @@ z_as_relative = false
 [node name="Centre" parent="InGameSpawnedObjects/LevelContainer" unique_id=1695746459 instance=ExtResource("3_vgxkg")]
 position = Vector2(0, -720)
 
+[node name="Centre2" parent="InGameSpawnedObjects/LevelContainer" unique_id=382513007 instance=ExtResource("3_vgxkg")]
+position = Vector2(0, -1440)
+
 [node name="Enemies" type="Node2D" parent="InGameSpawnedObjects" unique_id=22902286]
 
 [node name="Projectiles" type="Node2D" parent="InGameSpawnedObjects" unique_id=141642842]

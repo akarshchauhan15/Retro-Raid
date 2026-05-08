@@ -38,12 +38,13 @@ public partial class Playground : Node2D
         tween.TweenMethod(Callable.From<float>(Value => SliderSpeed = Value), 0.0f, 300.0f, 0.6f);
 
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Fly");
+
     }
     public void AddLevel()
     {
         BaseLevel LevelScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Level/Level{CurrentLevel}.tscn").Instantiate<BaseLevel>();
         LevelContainer.AddChild(LevelScene);
-        LevelScene.Position = Vector2.Up * 1440;
+        LevelScene.Position = Vector2.Up * 720 * 3;
         
         SpawnFixedPresetEnemy("Ship", LevelScene.GetNode<Node2D>("SpawnPositions/Ship"));
         SpawnFixedPresetEnemy("Tank", LevelScene.GetNode<Node2D>("SpawnPositions/Tank"));
@@ -56,7 +57,7 @@ public partial class Playground : Node2D
         
         MapComponent.Position = new Vector2(0, SacrificedPosition.Y - 720 * 3);
         LevelContainer.AddChild(MapComponent);
-
+    
         Enemies Ship = SpawnPresetEnemy("Ship", MapComponent);
 
         if (Random.Next(0, 10) < 3){ 

@@ -49,7 +49,9 @@ public partial class Player : CharacterBody2D
         UpdateStats(delta);
     }
     public override void _UnhandledInput(InputEvent @event)
-    {
+    {   
+        if (!Playground.isPlaying) return;
+
         if (@event.IsActionPressed("Shoot") && CooldownTimer.TimeLeft == 0)
             Shoot();
     }
