@@ -12,7 +12,6 @@ public partial class ResourceBag : Node
 
     public static PackedScene InfoLabelScene;
 
-
     public override void _Ready()
     {
         BulletScene = ResourceLoader.Load<PackedScene>("res://Scenes/Misc/Bullet.tscn");

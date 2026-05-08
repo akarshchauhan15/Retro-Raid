@@ -15,8 +15,10 @@ public partial class BaseMapComponent : Node2D
         Notifier2D.ScreenExited += OnExitedFromScreen;
     }
     private void OnExitedFromScreen()
-    {
-        GetTree().Root.GetNode<Playground>("Main/Playground").SpawnModularLevelComponent(Position);
+    {   
         QueueFree();
+        
+        if (Playground.CurrentGameMode == Playground.GameModes.Zen) 
+            GetTree().Root.GetNode<Playground>("Main/Playground").SpawnModularMapComponent(Position);
     }
 }

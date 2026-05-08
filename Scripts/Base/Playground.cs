@@ -12,6 +12,10 @@ public partial class Playground : Node2D
     public static float SliderSpeed = 300.0f;
     public static bool isPlaying = false;
 
+    public enum GameModes {Campaign, Zen}
+    public static GameModes CurrentGameMode;
+    public static int CurrentLevel = 1;
+
     public override void _Ready()
     {
         Slider = GetNode<Node2D>("InGameSpawnedObjects");
@@ -21,7 +25,6 @@ public partial class Playground : Node2D
         GetNode<Timer>("Timers/JetSpawnTimer").Timeout += SpawnEnemyJets;
 
         NextMapPackedComponent = BaseMapDefaults.ModularLevelScenes[0];
-        SpawnModularLevelComponent(Vector2.Down * 720);
     }
     public override void _Process(double delta)
     {
@@ -35,10 +38,19 @@ public partial class Playground : Node2D
         tween.TweenMethod(Callable.From<float>(Value => SliderSpeed = Value), 0.0f, 300.0f, 0.6f);
 
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Fly");
-
-        GetNode<Timer>("Timers/JetSpawnTimer").Start();
     }
-    public void SpawnModularLevelComponent(Vector2 SacrificedPosition)
+    public void AddLevel()
+    {
+        BaseLevel LevelScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Level/Level{CurrentLevel}.tscn").Instantiate<BaseLevel>();
+        LevelContainer.AddChild(LevelScene);
+        LevelScene.Position = Vector2.Up * 1440;
+        
+        SpawnFixedPresetEnemy("Ship", LevelScene.GetNode<Node2D>("SpawnPositions/Ship"));
+        SpawnFixedPresetEnemy("Tank", LevelScene.GetNode<Node2D>("SpawnPositions/Tank"));
+
+        if (CurrentLevel >= 3) GetNode<Timer>("Timers/JetSpawnTimer").Start();
+    }
+    public void SpawnModularMapComponent(Vector2 SacrificedPosition)
     {
         BaseMapComponent MapComponent = NextMapPackedComponent.Instantiate<BaseMapComponent>();
         
@@ -80,6 +92,15 @@ public partial class Playground : Node2D
         EnemyContainer.AddChild(Enemy);
         Enemy.GlobalPosition = RefPosition;
         return Enemy;
+    }
+    private void SpawnFixedPresetEnemy(string EnemyType, Node2D MarkerContainer)
+    {
+        foreach (Marker2D Marker in MarkerContainer.GetChildren())
+        {
+            Enemies Enemy = ResourceBag.EnemyScenes[EnemyType].Instantiate<Enemies>();
+            EnemyContainer.AddChild(Enemy);
+            Enemy.GlobalPosition = Marker.GlobalPosition;
+        }
     }
     private void SpawnEnemyJets()
     {

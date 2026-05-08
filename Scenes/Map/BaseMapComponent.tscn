@@ -42,7 +42,7 @@ position = Vector2(640, 360)
 scale = Vector2(2, 2)
 texture = ExtResource("1_yf4yu")
 region_enabled = true
-region_rect = Rect2(-5, 0, 700, 360)
+region_rect = Rect2(-15, 0, 720, 360)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=782468091]
 position = Vector2(10, 0)
