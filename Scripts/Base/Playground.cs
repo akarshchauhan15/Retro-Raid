@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Godot;
 
 public partial class Playground : Node2D
@@ -7,6 +8,7 @@ public partial class Playground : Node2D
     Node2D LevelContainer;
     Node2D EnemyContainer;
     PackedScene NextMapPackedComponent;
+    public AnimationPlayer Anim;
 
     Random Random = new();
     public static float SliderSpeed = 300.0f;
@@ -21,6 +23,7 @@ public partial class Playground : Node2D
         Slider = GetNode<Node2D>("InGameSpawnedObjects");
         LevelContainer = GetNode<Node2D>("InGameSpawnedObjects/LevelContainer");
         EnemyContainer = GetNode<Node2D>("InGameSpawnedObjects/Enemies");
+        Anim = GetNode<AnimationPlayer>("AnimationPlayer");
 
         GetNode<Timer>("Timers/JetSpawnTimer").Timeout += SpawnEnemyJets;
 
@@ -31,20 +34,21 @@ public partial class Playground : Node2D
         if (isPlaying)
         Slider.GlobalPosition += Vector2.Down * SliderSpeed * (float) delta;
     }
-    public void InitialStart()
+    public async Task InitialStart()
     {
         isPlaying = true;
         Tween tween = CreateTween();
         tween.TweenMethod(Callable.From<float>(Value => SliderSpeed = Value), 0.0f, 300.0f, 0.6f);
 
-        GetNode<AnimationPlayer>("AnimationPlayer").Play("Fly");
-
+        Anim.Play("Fly");
+        await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
+        Player.DisableMovement = false;
     }
     public void AddLevel()
     {
         BaseLevel LevelScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Level/Level{CurrentLevel}.tscn").Instantiate<BaseLevel>();
         LevelContainer.AddChild(LevelScene);
-        LevelScene.Position = Vector2.Up * 720 * 3;
+        LevelScene.GlobalPosition = Vector2.Up * 720 * 3;
         
         SpawnFixedPresetEnemy("Ship", LevelScene.GetNode<Node2D>("SpawnPositions/Ship"));
         SpawnFixedPresetEnemy("Tank", LevelScene.GetNode<Node2D>("SpawnPositions/Tank"));

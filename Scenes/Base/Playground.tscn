@@ -55,6 +55,22 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_vgxkg"]
+resource_name = "Enter"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1.7),
+"transitions": PackedFloat32Array(0.40612632, 1),
+"update": 0,
+"values": [Vector2(640, 840), Vector2(640, 560)]
+}
+
 [sub_resource type="Animation" id="Animation_6qj1y"]
 resource_name = "Fly"
 length = 2.5
@@ -93,7 +109,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.73333335, 2.499479)
 }
 
-[sub_resource type="Animation" id="Animation_vgxkg"]
+[sub_resource type="Animation" id="Animation_pkvjg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -105,23 +121,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.8, 0.8)]
+"values": [Vector2(1, 1)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Player:position:x")
+tracks/1/path = NodePath("Player:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 1000)]
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Player:position:y")
+tracks/2/path = NodePath("Player:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -129,12 +146,53 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_jg8fe"]
+resource_name = "SetBelow"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 840)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q1vot"]
 _data = {
 &"Default": SubResource("Animation_q1vot"),
+&"Enter": SubResource("Animation_vgxkg"),
 &"Fly": SubResource("Animation_6qj1y"),
-&"RESET": SubResource("Animation_vgxkg")
+&"RESET": SubResource("Animation_pkvjg"),
+&"SetBelow": SubResource("Animation_jg8fe")
 }
 
 [node name="Playground" type="Node2D" unique_id=1109740961]
@@ -171,7 +229,6 @@ shape = SubResource("SegmentShape2D_jg8fe")
 
 [node name="Player" parent="." unique_id=525242302 instance=ExtResource("2_o0c3l")]
 unique_name_in_owner = true
-scale = Vector2(0.8, 0.8)
 
 [node name="Camera" type="Camera2D" parent="." unique_id=799571054]
 unique_name_in_owner = true

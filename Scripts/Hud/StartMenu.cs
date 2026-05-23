@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class StartMenu : Control
 {
@@ -11,7 +12,7 @@ public partial class StartMenu : Control
     Button ExitButton;
     Button BackButton;
 
-    Label CentreLabel;
+    GameOverlay Overlay;
 
     Panel ExitPanel;
 
@@ -28,7 +29,7 @@ public partial class StartMenu : Control
         ExitButton = GetNode<Button>("ButtonContainer/HBoxContainer/ExitButton");
         BackButton = GetNode<Button>("GamemodeContainer/BackButton");
 
-        CentreLabel = GetNode<Label>("../GameOverlay/CentreLabel");
+        Overlay = GetNode<GameOverlay>("../GameOverlay");
 
         ExitPanel = GetNode<Panel>("../ExitPanel");
 
@@ -56,8 +57,7 @@ public partial class StartMenu : Control
         Playground.AddLevel();
 
         await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
-        CentreLabel.Text = $"Level {Playground.CurrentLevel}";
-        Anim.Play("CentreLabelPrompt");
+        Overlay.Prompt($"Level {Playground.CurrentLevel}", Wait: true);
     }
     private async void PlayZen()
     {
@@ -67,7 +67,6 @@ public partial class StartMenu : Control
         Playground.InitialStart();
 
         await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
-        CentreLabel.Text = $"Endless";
-        Anim.Play("CentreLabelPrompt");
+        Overlay.Prompt("Endless", Wait: true);
     }
 }
