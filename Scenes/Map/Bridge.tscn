@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b3fv1r3wwexh8"]
+
+[ext_resource type="Texture2D" uid="uid://bdf0quf2hamhx" path="res://Assets/RasterArt/Exported/Bridge.png" id="1_t0dy5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0dy5"]
+size = Vector2(432, 96)
+
+[node name="Bridge" type="Area2D" unique_id=1442349706]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1205672448]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_t0dy5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1083971743]
+scale = Vector2(4, 4)
+texture = ExtResource("1_t0dy5")
