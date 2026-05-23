@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
@@ -12,6 +13,9 @@ public partial class GameOverlay : Control
     VBoxContainer EventContainer;
     Label ScoreLabel;
 
+    public AnimationPlayer Anim;
+    Label CentreLabel;
+
     public override void _Ready()
     {
         Player = GetTree().Root.GetNode<Player>("Main/Playground/Player");
@@ -24,6 +28,9 @@ public partial class GameOverlay : Control
 
         ScoreLabel = GetNode<Label>("Bar/ScoreLabel");
 
+        Anim = GetNode<AnimationPlayer>("AnimationPlayer");
+        CentreLabel = GetNode<Label>("CentreLabel");
+
         Player.ScoreChanged += () => ScoreLabel.Text = Player.Score.ToString();
         Player.HealthChanged += () => HealthMeter.Value = Player.Health;
         Player.ShieldChanged += UpdateShields;
@@ -33,6 +40,13 @@ public partial class GameOverlay : Control
     public override void _Process(double delta)
     {
         FuelMeter.Value = Player.Fuel;
+    }
+    public async Task Prompt(string Text, bool Fade = false, bool Wait = false)
+    {
+        CentreLabel.Text = Text;
+        string AnimName = Fade ? "CentreLabelPromptFade" : "CentreLabelPrompt";
+        Anim.Play(AnimName);
+        if (Wait) await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
     }
     private void StartCooldown()
     {
