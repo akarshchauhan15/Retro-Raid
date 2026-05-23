@@ -22,6 +22,8 @@ public partial class Player : CharacterBody2D
     public Timer CooldownTimer;
     Marker2D BulletSpawnLocation;
 
+    public static bool DisableMovement = true;
+
     public float Fuel = 100f;
     public int Health = 3;
     public int Shield = 1;
@@ -73,8 +75,9 @@ public partial class Player : CharacterBody2D
     }
     private void CheckMovement(double delta)
     {
-        Vector2 Direction;
+        Vector2 Direction = Vector2.Zero;
 
+        if (!DisableMovement)
         Direction = Input.GetVector("Left", "Right", "Up", "Down");
         
         float HorizontalVelocityModifier = (Playground.SliderSpeed + 700) / 1200;
