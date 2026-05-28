@@ -75,4 +75,6 @@ one_shot = true
 
 [node name="Particles" type="GPUParticles2D" parent="." unique_id=749213438]
 position = Vector2(0, 25)
+emitting = false
+fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_0el0d")

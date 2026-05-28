@@ -42,6 +42,8 @@ public partial class Player : CharacterBody2D
         Particles = GetNode<GpuParticles2D>("Particles");
         CooldownTimer = GetNode<Timer>("CooldownTimer");
         BulletSpawnLocation = GetNode<Marker2D>("BulletSpawnLocation");
+
+        GetParent<Playground>().GameStarted += OnGameStarted;
     }
     public override void _Process(double delta)
     {
@@ -73,6 +75,10 @@ public partial class Player : CharacterBody2D
         Score += Value;
         EmitSignal(SignalName.ScoreChanged);
     }
+    private void OnGameStarted()
+    {
+        Particles.Emitting = true;
+    }
     private void CheckMovement(double delta)
     {
         Vector2 Direction = Vector2.Zero;
@@ -94,7 +100,7 @@ public partial class Player : CharacterBody2D
 
         Texture.Rotation = Velocity.X / (Playground.SliderSpeed + 400) * 0.2f;
 
-        Particles.AmountRatio = 0.6f + (Playground.SliderSpeed - 250) / 1000;
+        Particles.AmountRatio = 0.50f + Math.Min(Playground.SliderSpeed - 250 / 500, 0);
 
         MoveAndSlide();
     }

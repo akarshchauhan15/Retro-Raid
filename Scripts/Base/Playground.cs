@@ -4,6 +4,8 @@ using Godot;
 
 public partial class Playground : Node2D
 {
+    [Signal] public delegate void GameStartedEventHandler();
+
     Node2D Slider;
     Node2D LevelContainer;
     Node2D EnemyContainer;
@@ -36,12 +38,17 @@ public partial class Playground : Node2D
     }
     public async Task InitialStart()
     {
+        EmitSignal(Playground.SignalName.GameStarted);
+
         isPlaying = true;
         Tween tween = CreateTween();
         tween.TweenMethod(Callable.From<float>(Value => SliderSpeed = Value), 0.0f, 300.0f, 0.6f);
 
+        if (CurrentGameMode == GameModes.Zen) GetNode<Timer>("Timers/JetSpawnTimer").Start();
+
         Anim.Play("Fly");
         await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
+
         Player.DisableMovement = false;
     }
     public void AddLevel()
