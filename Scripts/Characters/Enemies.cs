@@ -63,6 +63,11 @@ public partial class Enemies : Area2D
     {
         QueueFree();
         Player.AddScore(GameConstants.ScoreValues[EnemySpecificScoreEnum]);
+
+        AnimatedSprite2D Explosion = ResourceBag.ExplosionEffectScene.Instantiate<AnimatedSprite2D>();
+        GetParent().AddChild(Explosion);
+        Explosion.GlobalPosition = GlobalPosition;
+
         if (SpawnPickableOnFree == null) return;
         AddPickable();
     }

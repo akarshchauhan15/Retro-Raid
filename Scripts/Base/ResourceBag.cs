@@ -12,6 +12,8 @@ public partial class ResourceBag : Node
 
     public static PackedScene InfoLabelScene;
 
+    public static PackedScene ExplosionEffectScene;
+
     public override void _Ready()
     {
         BulletScene = ResourceLoader.Load<PackedScene>("res://Scenes/Misc/Bullet.tscn");
@@ -23,5 +25,7 @@ public partial class ResourceBag : Node
         PickableScene = ResourceLoader.Load<PackedScene>("res://Scenes/Misc/Pickable.tscn");
 
         InfoLabelScene = ResourceLoader.Load<PackedScene>("res://Scenes/Hud/InfoLabel.tscn");
+
+        ExplosionEffectScene = ResourceLoader.Load<PackedScene>("res://Scenes/Effects/Explosion.tscn");
     }
 }

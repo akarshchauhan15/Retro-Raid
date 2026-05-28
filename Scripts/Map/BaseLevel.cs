@@ -9,9 +9,12 @@ public partial class BaseLevel : Node2D
     Area2D FinishLine;
 
     GameOverlay Overlay;
+    Playground Playground;
 
     public override void _Ready()
     {
+        Playground = GetNode<Playground>("../../../");
+
         FinishLine = GetNode<Area2D>("FinishLine");
         FinishLine.BodyEntered += EndLevel;
 
@@ -24,7 +27,8 @@ public partial class BaseLevel : Node2D
 
         tween.SetParallel(true);
 
-        tween.TweenProperty(Body, Node2D.PropertyName.Position.ToString(), new Vector2(Body.Position.X, -200), 2f);
+        tween.TweenProperty(Body, Node2D.PropertyName.Position.ToString(), new Vector2(Body.Position.X, -200), 2f).SetTrans(Tween.TransitionType.Quad);
+        tween.TweenMethod(Callable.From<float>((Value) => Playground.SliderSpeed = Value), Playground.SliderSpeed, 160f, 1.6f);
 
         tween.SetParallel(false);
 
@@ -33,7 +37,6 @@ public partial class BaseLevel : Node2D
     }
     private async Task ResetLevel()
     {   
-        Playground Playground = GetNode<Playground>("../../../");
         Playground.GetNode<AnimationPlayer>("AnimationPlayer").Play("SetBelow");
 
         Playground.GetNode<Node2D>("InGameSpawnedObjects").Position = Vector2.Zero;
@@ -50,9 +53,10 @@ public partial class BaseLevel : Node2D
             InitialCentre.GlobalPosition = Vector2.Up * i * 720;
         }
 
-        //Playground.CurrentLevel += 1;
+        Playground.CurrentLevel += 1;
         Playground.AddLevel();
 
+        Playground.SliderSpeed = 300.0f;
         Overlay.Anim.Play("Unfade");
         Playground.Anim.Play("Enter");
         
