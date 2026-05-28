@@ -4,11 +4,12 @@ using Godot;
 
 public partial class Playground : Node2D
 {
-    [Signal] public delegate void GameStartedEventHandler();
+    [Signal] public delegate void GameStateChangedEventHandler(bool GameStarted);
 
     Node2D Slider;
     Node2D LevelContainer;
     Node2D EnemyContainer;
+    Node2D PickableContainer;
     PackedScene NextMapPackedComponent;
     public AnimationPlayer Anim;
 
@@ -25,6 +26,7 @@ public partial class Playground : Node2D
         Slider = GetNode<Node2D>("InGameSpawnedObjects");
         LevelContainer = GetNode<Node2D>("InGameSpawnedObjects/LevelContainer");
         EnemyContainer = GetNode<Node2D>("InGameSpawnedObjects/Enemies");
+        PickableContainer = GetNode<Node2D>("InGameSpawnedObjects/Pickables");
         Anim = GetNode<AnimationPlayer>("AnimationPlayer");
 
         GetNode<Timer>("Timers/JetSpawnTimer").Timeout += SpawnEnemyJets;
@@ -38,7 +40,7 @@ public partial class Playground : Node2D
     }
     public async Task InitialStart()
     {
-        EmitSignal(Playground.SignalName.GameStarted);
+        EmitSignal(Playground.SignalName.GameStateChanged, true);
 
         isPlaying = true;
         Tween tween = CreateTween();
@@ -59,6 +61,8 @@ public partial class Playground : Node2D
         
         SpawnFixedPresetEnemy("Ship", LevelScene.GetNode<Node2D>("SpawnPositions/Ship"));
         SpawnFixedPresetEnemy("Tank", LevelScene.GetNode<Node2D>("SpawnPositions/Tank"));
+
+        SetPresetPickable(Pickable.PickableType.Fuel, LevelScene.GetNode<Node2D>("SpawnPositions/Fuel"));
 
         if (CurrentLevel >= 3) GetNode<Timer>("Timers/JetSpawnTimer").Start();
     }
@@ -112,6 +116,17 @@ public partial class Playground : Node2D
             Enemies Enemy = ResourceBag.EnemyScenes[EnemyType].Instantiate<Enemies>();
             EnemyContainer.AddChild(Enemy);
             Enemy.GlobalPosition = Marker.GlobalPosition;
+        }
+    }
+    private void SetPresetPickable(Pickable.PickableType Type, Node2D MarkerContainer)
+    {
+        foreach (Marker2D Marker in MarkerContainer.GetChildren())
+        {
+            LevelPickable Pickable = ResourceBag.LevelPickableScene.Instantiate<LevelPickable>();
+            Pickable.Initialize(Type);
+
+            PickableContainer.AddChild(Pickable);
+            Pickable.GlobalPosition = Marker.GlobalPosition;
         }
     }
     private void SpawnEnemyJets()

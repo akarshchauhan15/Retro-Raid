@@ -43,7 +43,7 @@ public partial class Player : CharacterBody2D
         CooldownTimer = GetNode<Timer>("CooldownTimer");
         BulletSpawnLocation = GetNode<Marker2D>("BulletSpawnLocation");
 
-        GetParent<Playground>().GameStarted += OnGameStarted;
+        GetParent<Playground>().GameStateChanged += OnGameStarted;
     }
     public override void _Process(double delta)
     {
@@ -75,9 +75,9 @@ public partial class Player : CharacterBody2D
         Score += Value;
         EmitSignal(SignalName.ScoreChanged);
     }
-    private void OnGameStarted()
+    private void OnGameStarted(bool GameStarted)
     {
-        Particles.Emitting = true;
+        Particles.Emitting = GameStarted;
     }
     private void CheckMovement(double delta)
     {

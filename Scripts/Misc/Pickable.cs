@@ -17,16 +17,20 @@ public partial class Pickable : Area2D
         tween.TweenProperty(this, Node2D.PropertyName.Modulate.ToString(), Colors.White, 0.2f).From(Colors.Transparent);
         tween.TweenProperty(this, Node2D.PropertyName.Scale.ToString(), Vector2.One, 0.2f).From(Vector2.One * 0.4f).SetTrans(Tween.TransitionType.Quad);
     }
-    public void Initialize(PickableType Type)
+    public virtual void Initialize(PickableType Type)
     { 
         this.Type = Type;
         GetNode<Sprite2D>("Sprite2D").Frame = (int)Type;
     }
-    private void OnPlayerEntered(Node2D Body)
+    public void OnPlayerEntered(Node2D Body)
     {    
         if (!(Body is Player)) return;
         QueueFree();
 
+        ApplyEffect(Body);
+    }
+    public void ApplyEffect(Node2D Body)
+    {
         Player Player = Body as Player;
         Player.EmitSignal(Player.SignalName.Pickuped, (int)Type);
 

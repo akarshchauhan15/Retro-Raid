@@ -1042,6 +1042,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="PauseButton" type="TextureButton" parent="MenuSlide/ColorRect" unique_id=380464060]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

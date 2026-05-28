@@ -65,7 +65,7 @@ metadata/_edit_lock_ = true
 
 [node name="Fuel" type="Node2D" parent="SpawnPositions" unique_id=681871776]
 
-[node name="Health" type="Node2D" parent="SpawnPositions" unique_id=1313052772]
+[node name="Shield" type="Node2D" parent="SpawnPositions" unique_id=1313052772]
 
 [node name="FinishLine" type="Area2D" parent="." unique_id=1296700144]
 position = Vector2(-80, 0)

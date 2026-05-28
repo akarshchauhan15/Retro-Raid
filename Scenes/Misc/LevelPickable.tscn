@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ca3stt702iby8"]
+
+[ext_resource type="Script" uid="uid://ctfigdqvj50c1" path="res://Scripts/Misc/LevelPickable.cs" id="1_hiyaq"]
+[ext_resource type="Texture2D" uid="uid://dldm6f63u3lwa" path="res://Assets/RasterArt/Exported/LevelPickable.png" id="2_hiyaq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anrdx"]
+size = Vector2(36, 36)
+
+[node name="LevelPickable" type="Area2D" unique_id=974141798]
+collision_layer = 8
+script = ExtResource("1_hiyaq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=475383489]
+scale = Vector2(2, 2)
+texture = ExtResource("2_hiyaq")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595158025]
+shape = SubResource("RectangleShape2D_anrdx")
