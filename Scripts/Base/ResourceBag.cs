@@ -10,6 +10,8 @@ public partial class ResourceBag : Node
 
     public static PackedScene PickableScene;
 
+    public static PackedScene LevelPickableScene;
+
     public static PackedScene InfoLabelScene;
 
     public static PackedScene ExplosionEffectScene;
@@ -23,6 +25,8 @@ public partial class ResourceBag : Node
             EnemyScenes.Add(EnemyName, ResourceLoader.Load<PackedScene>($"res://Scenes/Characters/Enemies/{EnemyName}.tscn"));
 
         PickableScene = ResourceLoader.Load<PackedScene>("res://Scenes/Misc/Pickable.tscn");
+
+        LevelPickableScene = ResourceLoader.Load<PackedScene>("res://Scenes/Misc/LevelPickable.tscn");
 
         InfoLabelScene = ResourceLoader.Load<PackedScene>("res://Scenes/Hud/InfoLabel.tscn");
 

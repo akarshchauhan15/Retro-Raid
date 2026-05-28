@@ -20,6 +20,8 @@ public partial class MenuSlide : Slide
         PauseButton.Toggled += OnPauseButtonToggled;
         ExitButton.Pressed += OnExitButtonPressed;
 
+        
+        GetNode<Playground>("/root/Main/Playground").GameStateChanged += (bool GameStarted) => PauseButton.Visible = GameStarted; 
         MotionCompleted += (bool Hidden) => { if (Hidden) ExitPressedOnce = false; };
     }
     private void OnFullscreenButtonToggled(bool Fullscreen)
