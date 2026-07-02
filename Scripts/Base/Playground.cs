@@ -53,9 +53,10 @@ public partial class Playground : Node2D
 
         Player.DisableMovement = false;
     }
-    public void AddLevel()
+    public async Task AddLevel()
     {
         BaseLevel LevelScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Level/Level{CurrentLevel}.tscn").Instantiate<BaseLevel>();
+
         LevelContainer.AddChild(LevelScene);
         LevelScene.GlobalPosition = Vector2.Up * 720 * 3;
         
@@ -63,6 +64,7 @@ public partial class Playground : Node2D
         SpawnFixedPresetEnemy("Tank", LevelScene.GetNode<Node2D>("SpawnPositions/Tank"));
 
         SetPresetPickable(Pickable.PickableType.Fuel, LevelScene.GetNode<Node2D>("SpawnPositions/Fuel"));
+        SetPresetPickable(Pickable.PickableType.Shield, LevelScene.GetNode<Node2D>("SpawnPositions/Shield"));
 
         if (CurrentLevel >= 3) GetNode<Timer>("Timers/JetSpawnTimer").Start();
     }
@@ -120,6 +122,8 @@ public partial class Playground : Node2D
     }
     private void SetPresetPickable(Pickable.PickableType Type, Node2D MarkerContainer)
     {
+        if (MarkerContainer.GetChildCount() == 0) return;
+
         foreach (Marker2D Marker in MarkerContainer.GetChildren())
         {
             LevelPickable Pickable = ResourceBag.LevelPickableScene.Instantiate<LevelPickable>();

@@ -146,6 +146,12 @@ position = Vector2(458, -12389)
 [node name="Marker2D7" type="Marker2D" parent="SpawnPositions/Fuel" parent_id_path=PackedInt32Array(681871776) index="6" unique_id=1551169471]
 position = Vector2(1069, -13983)
 
+[node name="Marker2D" type="Marker2D" parent="SpawnPositions/Shield" parent_id_path=PackedInt32Array(1313052772) index="0" unique_id=540106700]
+position = Vector2(640, -332)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPositions/Shield" parent_id_path=PackedInt32Array(1313052772) index="1" unique_id=654820124]
+position = Vector2(669, -10607)
+
 [node name="FinishLine" parent="." index="3" unique_id=1296700144]
 position = Vector2(-80, -14316)
 metadata/_edit_group_ = true
