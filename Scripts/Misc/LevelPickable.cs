@@ -12,7 +12,7 @@ public partial class LevelPickable : Pickable
         this.Type = Type;
         GetNode<Sprite2D>("Sprite2D").Frame = (int)Type / 2;
     }
-    public void OnPlayerEntered(Node2D Body)
+    public new void OnPlayerEntered(Node2D Body)
     {
         if (!(Body is Player)) return;
 

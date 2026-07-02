@@ -21,6 +21,8 @@ public partial class Enemies : Area2D
     float FireInaccuracy = 0.2f;
     [Export]
     bool Flying = false;
+    [Export]
+    bool DeadSpriteExists = true;
     public Pickable.PickableType? SpawnPickableOnFree = null;
 
     public override void _Ready()
@@ -61,12 +63,22 @@ public partial class Enemies : Area2D
     }
     public void OnHit()
     {
-        QueueFree();
         Player.AddScore(GameConstants.ScoreValues[EnemySpecificScoreEnum]);
 
         AnimatedSprite2D Explosion = ResourceBag.ExplosionEffectScene.Instantiate<AnimatedSprite2D>();
         GetParent().AddChild(Explosion);
         Explosion.GlobalPosition = GlobalPosition;
+
+        if (DeadSpriteExists)
+        {
+            ProcessMode = ProcessModeEnum.Disabled;
+
+            GetNode<Sprite2D>("Texture").Frame = 1;
+
+            if (GetNode<Sprite2D>("Turret").Texture != null)
+            GetNode<Sprite2D>("Turret").Frame = 1;
+        }
+        else QueueFree();
 
         if (SpawnPickableOnFree == null) return;
         AddPickable();
