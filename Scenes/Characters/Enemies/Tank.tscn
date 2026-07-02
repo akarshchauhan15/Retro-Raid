@@ -16,12 +16,14 @@ ShootingTimePeriod = 1.0
 rotation = -1.5707964
 scale = Vector2(2, 2)
 texture = ExtResource("2_d2uvm")
+vframes = 2
 
 [node name="Turret" parent="." index="1" unique_id=935187485]
 rotation = -1.5707964
 scale = Vector2(2, 2)
 texture = ExtResource("3_d2uvm")
 offset = Vector2(-5, 0)
+vframes = 2
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=208896183]
 shape = SubResource("RectangleShape2D_d2uvm")

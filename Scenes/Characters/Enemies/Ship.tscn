@@ -13,6 +13,7 @@ ShootingTimePeriod = 1.0
 [node name="Texture" parent="." index="0" unique_id=395674862]
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("2_8hqrk")
+hframes = 2
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=208896183]
 position = Vector2(0, -2)
