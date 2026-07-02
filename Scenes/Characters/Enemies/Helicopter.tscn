@@ -36,6 +36,7 @@ size = Vector2(37, 8)
 [node name="Helicopter" unique_id=963257120 instance=ExtResource("1_5wdf3")]
 script = ExtResource("2_ey88n")
 Flying = true
+DeadSpriteExists = false
 
 [node name="Texture" parent="." index="0" unique_id=395674862]
 scale = Vector2(1.6, 1.6)

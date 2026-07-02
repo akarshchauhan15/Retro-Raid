@@ -23,6 +23,7 @@ public partial class BaseLevel : Node2D
     private async void EndLevel(Node2D Body)
     {       
         Player.DisableMovement = true;
+        Player.CheckForCollisions = false;
         Tween tween = CreateTween();
 
         tween.SetParallel(true);
@@ -68,6 +69,7 @@ public partial class BaseLevel : Node2D
         Overlay.Prompt($"Level {Playground.CurrentLevel}");
         Playground.isPlaying = true;
         Player.DisableMovement = false;
+        Player.CheckForCollisions = true;
 
         QueueFree();
     }

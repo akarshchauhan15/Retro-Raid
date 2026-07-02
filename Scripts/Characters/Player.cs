@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Godot;
 using Godot.Collections;
 
@@ -23,6 +24,8 @@ public partial class Player : CharacterBody2D
     Marker2D BulletSpawnLocation;
 
     public static bool DisableMovement = true;
+
+    public static bool CheckForCollisions = true;
 
     public float Fuel = 100f;
     public int Health = 3;
@@ -61,6 +64,8 @@ public partial class Player : CharacterBody2D
     }
     public void OnHit()
     {   
+        if (!CheckForCollisions) return;
+
         if (Shield > 0)
         {
             Shield-=1;

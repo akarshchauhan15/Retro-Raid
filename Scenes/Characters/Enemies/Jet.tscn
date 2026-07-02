@@ -12,6 +12,7 @@ script = ExtResource("2_fnhew")
 EnemySpecificScoreEnum = 3
 DetectionRadius = 0.0
 Flying = true
+DeadSpriteExists = false
 
 [node name="Texture" parent="." index="0" unique_id=395674862]
 scale = Vector2(1.75, 1.75)
