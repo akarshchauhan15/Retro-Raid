@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://b5v15uldilm4" path="res://Assets/Fonts/Aldrich/Aldrich-Regular.ttf" id="4_p2ou8"]
 [ext_resource type="Script" uid="uid://dabetad3vjnkp" path="res://Scripts/Hud/PauseMenu.cs" id="5_kccyi"]
 [ext_resource type="Texture2D" uid="uid://b1nbpuertlt48" path="res://Assets/RasterArt/Exported/Shield.png" id="5_mfj1d"]
+[ext_resource type="PackedScene" uid="uid://djre7pcu01aju" path="res://Scenes/Hud/ScoresMenu.tscn" id="6_ok6ej"]
 [ext_resource type="PackedScene" uid="uid://b67qgkmesk40u" path="res://Resources/CustomNode/Slide.tscn" id="6_v4pvl"]
 [ext_resource type="Script" uid="uid://2q3r3lahcni4" path="res://Scripts/Hud/MenuSlide.cs" id="7_nbero"]
 [ext_resource type="Texture2D" uid="uid://dcibkcxmkqp1q" path="res://Assets/VectorArt/Icons/Pause.svg" id="7_u1qau"]
@@ -641,6 +642,7 @@ theme = ExtResource("2_wgaer")
 text = "BACK"
 
 [node name="GameOverlay" type="Control" parent="." unique_id=1399946451]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -807,6 +809,9 @@ offset_bottom = 90.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverlay" unique_id=1424754525]
 libraries/ = SubResource("AnimationLibrary_82n6s")
+
+[node name="ScoresMenu" parent="." unique_id=790860945 instance=ExtResource("6_ok6ej")]
+visible = false
 
 [node name="PauseMenu" type="Panel" parent="." unique_id=695202549]
 process_mode = 3

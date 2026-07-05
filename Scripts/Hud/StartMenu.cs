@@ -9,6 +9,7 @@ public partial class StartMenu : Control
 
     Button StartButton;
     Button OptionsButton;
+    Button ScoresButton;
     Button ExitButton;
     Button BackButton;
 
@@ -26,6 +27,7 @@ public partial class StartMenu : Control
 
         StartButton = GetNode<Button>("ButtonContainer/StartButton");
         OptionsButton = GetNode<Button>("ButtonContainer/OptionsButton");
+        ScoresButton = GetNode<Button>("ButtonContainer/HBoxContainer/ScoresButton");
         ExitButton = GetNode<Button>("ButtonContainer/HBoxContainer/ExitButton");
         BackButton = GetNode<Button>("GamemodeContainer/BackButton");
 
@@ -38,6 +40,7 @@ public partial class StartMenu : Control
 
         StartButton.Pressed += SwitchContainers;
         BackButton.Pressed += SwitchContainers;
+        ScoresButton.Pressed += ShowScoresMenu;
         ExitButton.Pressed += ExitPanel.Show;
 
         GamemodeContainer.GetNode<Button>("Campaign").Pressed += PlayCampaign;
@@ -68,5 +71,10 @@ public partial class StartMenu : Control
 
         await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
         Overlay.Prompt("Endless", Wait: true);
+    }
+    private void ShowScoresMenu()
+    {
+        Hide();
+        GetNode<Control>("../ScoresMenu").Show();
     }
 }

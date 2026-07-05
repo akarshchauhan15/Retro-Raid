@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 
 BaseMapDefaults="*res://Scripts/Map/BaseMapDefaults.cs"
 ResourceBag="*uid://xj5fiky4d7he"
+ScoreController="*uid://dpp7e8crj67dy"
 
 [display]
 

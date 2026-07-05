@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -11,4 +12,16 @@ public class GameConstants
         {ScoreEnum.JetHit, 30},
         {ScoreEnum.BridgeHit, 40},
     };
+}
+
+public class ScoreEntry
+{
+    public int Score { get; set; }
+    public DateTime Date { get; set; }
+
+    public ScoreEntry(int score)
+    {
+        Score = score;
+        Date = DateTime.Now;
+    }
 }
