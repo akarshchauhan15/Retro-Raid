@@ -41,12 +41,7 @@ public partial class BaseLevel : Node2D
         Playground.GetNode<AnimationPlayer>("AnimationPlayer").Play("SetBelow");
 
         Playground.GetNode<Node2D>("InGameSpawnedObjects").Position = Vector2.Zero;
-
-        foreach (Node2D Enemy in Playground.GetNode("InGameSpawnedObjects/Enemies").GetChildren())
-            Enemy.QueueFree();
-        
-        foreach (Node2D Pickable in Playground.GetNode("InGameSpawnedObjects/Pickables").GetChildren())
-            Pickable.QueueFree();
+        Playground.CleanUp();
 
         PackedScene Centre = BaseMapDefaults.ModularLevelScenes[(int)BaseMapDefaults.ModularLevelNamesEnum.Centre];
 

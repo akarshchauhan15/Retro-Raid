@@ -4,7 +4,7 @@ using System;
 
 public partial class BaseMapDefaults : Node
 {
-
+    public static PackedScene AirportScene;
     public static readonly Array<PackedScene> ModularLevelScenes = [];
 
     public enum ModularLevelNamesEnum
@@ -26,5 +26,7 @@ public partial class BaseMapDefaults : Node
         {
             ModularLevelScenes.Add(ResourceLoader.Load<PackedScene>($"res://Scenes/Map/{Address}.tscn"));
         }
+
+        AirportScene = ResourceLoader.Load<PackedScene>("res://Scenes/Map/Airport.tscn");
     }
 }

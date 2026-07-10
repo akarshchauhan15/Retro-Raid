@@ -13,6 +13,8 @@ public partial class Playground : Node2D
     PackedScene NextMapPackedComponent;
     public AnimationPlayer Anim;
 
+    Timer JetTimer;
+
     Random Random = new();
     public static float SliderSpeed = 300.0f;
     public static bool isPlaying = false;
@@ -29,7 +31,10 @@ public partial class Playground : Node2D
         PickableContainer = GetNode<Node2D>("InGameSpawnedObjects/Pickables");
         Anim = GetNode<AnimationPlayer>("AnimationPlayer");
 
-        GetNode<Timer>("Timers/JetSpawnTimer").Timeout += SpawnEnemyJets;
+        JetTimer = GetNode<Timer>("Timers/JetSpawnTimer");
+
+        JetTimer.Timeout += SpawnEnemyJets;
+        GetNode<Player>("Player").PlayedDied += EndGame;
 
         NextMapPackedComponent = BaseMapDefaults.ModularLevelScenes[0];
     }
@@ -43,6 +48,8 @@ public partial class Playground : Node2D
         EmitSignal(Playground.SignalName.GameStateChanged, true);
 
         isPlaying = true;
+        EnemyContainer.ProcessMode = ProcessModeEnum.Inherit;
+
         Tween tween = CreateTween();
         tween.TweenMethod(Callable.From<float>(Value => SliderSpeed = Value), 0.0f, 300.0f, 0.6f);
 
@@ -66,7 +73,7 @@ public partial class Playground : Node2D
         SetPresetPickable(Pickable.PickableType.Fuel, LevelScene.GetNode<Node2D>("SpawnPositions/Fuel"));
         SetPresetPickable(Pickable.PickableType.Shield, LevelScene.GetNode<Node2D>("SpawnPositions/Shield"));
 
-        if (CurrentLevel >= 3) GetNode<Timer>("Timers/JetSpawnTimer").Start();
+        if (CurrentLevel >= 3) JetTimer.Start();
     }
     public void SpawnModularMapComponent(Vector2 SacrificedPosition)
     {
@@ -96,6 +103,49 @@ public partial class Playground : Node2D
 
         BaseMapDefaults.ModularLevelNamesEnum NextMapEnum = MapComponent.NextModularLevels.PickRandom();
         NextMapPackedComponent =  BaseMapDefaults.ModularLevelScenes[(int)NextMapEnum];
+    }
+    public void CleanUp()
+    {
+        foreach (Node2D Enemy in EnemyContainer.GetChildren())
+            Enemy.QueueFree();
+        
+        foreach (Node2D Pickable in PickableContainer.GetChildren())
+            Pickable.QueueFree();
+        
+        foreach (Node2D Map in LevelContainer.GetChildren())
+            Map.Free();
+    }
+    public void ResetGame()
+    {
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("Default");
+        
+        CleanUp();
+        Slider.Position = Vector2.Zero;
+
+        BaseMapComponent Airport = BaseMapDefaults.AirportScene.Instantiate() as BaseMapComponent;
+        LevelContainer.AddChild(Airport);
+
+        PackedScene Centre = BaseMapDefaults.ModularLevelScenes[(int)BaseMapDefaults.ModularLevelNamesEnum.Centre];
+        for (int i = 1; i < 3; i++)
+        {
+            BaseMapComponent InitialCentre = Centre.Instantiate<BaseMapComponent>();
+            LevelContainer.AddChild(InitialCentre);
+            InitialCentre.GlobalPosition = Vector2.Up * i * 720;
+        }
+        GetNode<Player>("Player").ResetStats();
+        NextMapPackedComponent = BaseMapDefaults.ModularLevelScenes[0];
+    }
+    private void EndGame(string Cause)
+    {   
+        EmitSignal(Playground.SignalName.GameStateChanged, false);
+
+        JetTimer.Stop();
+        EnemyContainer.ProcessMode = ProcessModeEnum.Disabled;
+        
+        Tween tween = CreateTween();
+        tween.SetParallel(true);
+        tween.TweenMethod(Callable.From<float>((Value) => Playground.SliderSpeed = Value), Playground.SliderSpeed, 0, 0.3f);
+        tween.TweenCallback(Callable.From(() => isPlaying = false)).SetDelay(0.3f);
     }
     private Enemies SpawnPresetEnemy(string EnemyType, BaseMapComponent MapComponent)
     {

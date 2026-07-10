@@ -1,5 +1,4 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
 using Godot;
 using Godot.Collections;
 
@@ -9,6 +8,8 @@ public partial class Player : CharacterBody2D
     public delegate void ScoreChangedEventHandler();
     [Signal]
     public delegate void HealthChangedEventHandler();
+    [Signal]
+    public delegate void PlayedDiedEventHandler(string Cause);
     [Signal]
     public delegate void ShieldChangedEventHandler();
     [Signal]
@@ -57,7 +58,7 @@ public partial class Player : CharacterBody2D
     }
     public override void _UnhandledInput(InputEvent @event)
     {   
-        if (!Playground.isPlaying) return;
+        if (DisableMovement) return;
 
         if (@event.IsActionPressed("Shoot") && CooldownTimer.TimeLeft == 0)
             Shoot();
@@ -74,15 +75,51 @@ public partial class Player : CharacterBody2D
         }
         Health-=1;
         EmitSignal(SignalName.HealthChanged);
+
+        if (Health <= 0) Kill("PlayerHit");
     }
     public void AddScore(int Value)
     {
         Score += Value;
         EmitSignal(SignalName.ScoreChanged);
     }
+    public void ResetStats()
+    {
+        Texture.Frame = 0;
+        Texture.Scale = 2 * Vector2.One;
+        Fuel = 100f;
+        Health = 3;
+    }
+    private void Kill(string Cause)
+    {
+        EmitSignal(SignalName.PlayedDied, Cause);
+
+        AnimatedSprite2D Explosion = ResourceBag.ExplosionEffectScene.Instantiate() as AnimatedSprite2D;
+        GetParent().AddChild(Explosion);
+        Explosion.GlobalPosition = GlobalPosition;
+        Explosion.Stop();
+
+        switch (Cause)
+        {
+            case "PlayerHit":
+                Explosion.Play("Explode");
+                
+                Texture.Frame = 1;
+                Texture.Scale *= 0.8f;
+                break;
+            
+            case "FuelDepleted":
+                Tween tween = CreateTween();
+                tween.TweenProperty(Texture, Node2D.PropertyName.Scale.ToString(), Vector2.One * 1.6f, 0.8f).SetTrans(Tween.TransitionType.Quad);
+                tween.TweenCallback(Callable.From(() => {Explosion.Play("Explode"); Texture.Frame = 1;}));
+                break;
+        }
+    }
     private void OnGameStarted(bool GameStarted)
     {
         Particles.Emitting = GameStarted;
+        DisableMovement =! GameStarted;
+        CheckForCollisions = GameStarted;
     }
     private void CheckMovement(double delta)
     {
@@ -139,5 +176,7 @@ public partial class Player : CharacterBody2D
     {
         float HorizontalVelocityModifier = (Playground.SliderSpeed + 700) / 1200;
         Fuel -= 2 * HorizontalVelocityModifier * (float) delta;
+
+        if ((Fuel <= 0) && !DisableMovement) Kill("FuelDepleted");
     }
 }
