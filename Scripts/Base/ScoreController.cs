@@ -11,16 +11,16 @@ public partial class ScoreController : Node
     public static List<ScoreEntry> CampaignScores = new List<ScoreEntry>();
     public static string Path = "res://scores.json";
 
-    public static void AddScores(int Score, string ScoreType)
+    public static void AddScores(int Score, Playground.GameModes GameMode)
     {   
-        switch (ScoreType)
+        switch (GameMode)
         {
-            case "Campaign":
+            case Playground.GameModes.Campaign:
                 CampaignScores.Add(new ScoreEntry(Score));
                 CampaignScores = CampaignScores.OrderByDescending(entry => entry.Score).Take(10).ToList();
                 return;
 
-            case "Endless":
+            case Playground.GameModes.Zen:
                 EndlessScores.Add(new ScoreEntry(Score));
                 EndlessScores = EndlessScores.OrderByDescending(entry => entry.Score).Take(10).ToList();
                 return;

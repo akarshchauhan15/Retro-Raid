@@ -6,6 +6,7 @@ public partial class Playground : Node2D
 {
     [Signal] public delegate void GameStateChangedEventHandler(bool GameStarted);
 
+    Player Player;
     Node2D Slider;
     Node2D LevelContainer;
     Node2D EnemyContainer;
@@ -24,7 +25,8 @@ public partial class Playground : Node2D
     public static int CurrentLevel = 1;
 
     public override void _Ready()
-    {
+    {   
+        Player = GetNode<Player>("Player");
         Slider = GetNode<Node2D>("InGameSpawnedObjects");
         LevelContainer = GetNode<Node2D>("InGameSpawnedObjects/LevelContainer");
         EnemyContainer = GetNode<Node2D>("InGameSpawnedObjects/Enemies");
@@ -34,7 +36,7 @@ public partial class Playground : Node2D
         JetTimer = GetNode<Timer>("Timers/JetSpawnTimer");
 
         JetTimer.Timeout += SpawnEnemyJets;
-        GetNode<Player>("Player").PlayedDied += EndGame;
+        Player.PlayedDied += EndGame;
 
         NextMapPackedComponent = BaseMapDefaults.ModularLevelScenes[0];
     }
@@ -104,7 +106,7 @@ public partial class Playground : Node2D
         BaseMapDefaults.ModularLevelNamesEnum NextMapEnum = MapComponent.NextModularLevels.PickRandom();
         NextMapPackedComponent =  BaseMapDefaults.ModularLevelScenes[(int)NextMapEnum];
     }
-    public void CleanUp()
+    public void CleanUp(bool IncludeMap = true)
     {
         foreach (Node2D Enemy in EnemyContainer.GetChildren())
             Enemy.QueueFree();
@@ -112,6 +114,7 @@ public partial class Playground : Node2D
         foreach (Node2D Pickable in PickableContainer.GetChildren())
             Pickable.QueueFree();
         
+        if (!IncludeMap) return;
         foreach (Node2D Map in LevelContainer.GetChildren())
             Map.Free();
     }
@@ -132,7 +135,7 @@ public partial class Playground : Node2D
             LevelContainer.AddChild(InitialCentre);
             InitialCentre.GlobalPosition = Vector2.Up * i * 720;
         }
-        GetNode<Player>("Player").ResetStats();
+        Player.ResetStats();
         NextMapPackedComponent = BaseMapDefaults.ModularLevelScenes[0];
     }
     private void EndGame(string Cause)
@@ -146,6 +149,13 @@ public partial class Playground : Node2D
         tween.SetParallel(true);
         tween.TweenMethod(Callable.From<float>((Value) => Playground.SliderSpeed = Value), Playground.SliderSpeed, 0, 0.3f);
         tween.TweenCallback(Callable.From(() => isPlaying = false)).SetDelay(0.3f);
+
+        AppendScores();
+    }
+    private void AppendScores()
+    {
+        ScoreController.AddScores(Player.Score, CurrentGameMode);
+        GetNode<ScoresMenu>("../HUD/ScoresMenu").SetScoreList();
     }
     private Enemies SpawnPresetEnemy(string EnemyType, BaseMapComponent MapComponent)
     {

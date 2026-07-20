@@ -31,7 +31,7 @@ public partial class Player : CharacterBody2D
     public float Fuel = 100f;
     public int Health = 3;
     public int Shield = 1;
-    public int Score = 0;
+    public static int Score = 0;
 
     Vector2 MaxVelocity = new(700, 500);
     float MinVelocityY = 250;
@@ -89,6 +89,7 @@ public partial class Player : CharacterBody2D
         Texture.Scale = 2 * Vector2.One;
         Fuel = 100f;
         Health = 3;
+        AddScore(-Score);
     }
     private void Kill(string Cause)
     {
