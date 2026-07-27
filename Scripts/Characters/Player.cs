@@ -60,13 +60,13 @@ public partial class Player : CharacterBody2D
     {   
         if (DisableMovement) return;
 
-        if (@event.IsActionPressed("Shoot") && CooldownTimer.TimeLeft == 0)
-            Shoot();
+        if (@event.IsActionPressed("Shoot") && CooldownTimer.TimeLeft == 0) { Shoot(); AudioServer.Play("Shoot"); }
     }
     public void OnHit()
     {   
         if (!CheckForCollisions) return;
 
+        AudioServer.Play("Hit");
         if (Shield > 0)
         {
             Shield-=1;
@@ -104,6 +104,7 @@ public partial class Player : CharacterBody2D
         {
             case "PlayerHit":
                 Explosion.Play("Explode");
+                AudioServer.Play("Explosion");
                 
                 Texture.Frame = 1;
                 Texture.Scale *= 0.8f;
@@ -112,7 +113,7 @@ public partial class Player : CharacterBody2D
             case "FuelDepleted":
                 Tween tween = CreateTween();
                 tween.TweenProperty(Texture, Node2D.PropertyName.Scale.ToString(), Vector2.One * 1.6f, 0.8f).SetTrans(Tween.TransitionType.Quad);
-                tween.TweenCallback(Callable.From(() => {Explosion.Play("Explode"); Texture.Frame = 1;}));
+                tween.TweenCallback(Callable.From(() => {Explosion.Play("Explode"); AudioServer.Play("Explosion"); Texture.Frame = 1;}));
                 break;
         }
     }

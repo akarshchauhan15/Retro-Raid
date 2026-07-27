@@ -27,5 +27,6 @@ public partial class LevelPickable : Pickable
         tween.TweenCallback(Callable.From(QueueFree));
 
         ApplyEffect(Body);
+        AudioServer.Play("PickUp");
     }
 }

@@ -77,8 +77,14 @@ public partial class Enemies : Area2D
 
             if (GetNode<Sprite2D>("Turret").Texture != null)
             GetNode<Sprite2D>("Turret").Frame = 1;
+
+            AudioServer.Play("Explosion");
         }
-        else QueueFree();
+        else 
+        {
+            QueueFree();
+            AudioServer.Play("Hit");
+        }
 
         if (SpawnPickableOnFree == null) return;
         AddPickable();
@@ -108,5 +114,7 @@ public partial class Enemies : Area2D
 
         Projectiles.AddChild(NewBullet);
         NewBullet.GlobalPosition = BulletSpawnLocation.GlobalPosition;
+
+        AudioServer.Play("Shoot");
     }
 }

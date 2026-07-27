@@ -2,11 +2,35 @@
 
 [ext_resource type="PackedScene" uid="uid://b2lmq0c7rqqxp" path="res://Scenes/Base/Playground.tscn" id="1_kqwn2"]
 [ext_resource type="PackedScene" uid="uid://djldwp87u6ooo" path="res://Scenes/Base/Hud.tscn" id="2_ginsy"]
+[ext_resource type="AudioStream" uid="uid://cskhna3tlt85a" path="res://Assets/Sounds/Shoot.wav" id="2_os4jr"]
+[ext_resource type="Script" uid="uid://yr1bhnlcqmv" path="res://Scenes/Base/AudioServer.cs" id="2_vhn1l"]
 [ext_resource type="Texture2D" uid="uid://dgqhl7aewsocw" path="res://Assets/VectorArt/Graphics/VignetteFilter.svg" id="3_ginsy"]
+[ext_resource type="AudioStream" uid="uid://des76sjdocxu4" path="res://Assets/Sounds/Hit.wav" id="3_qakox"]
+[ext_resource type="AudioStream" uid="uid://ck2ryib827cei" path="res://Assets/Sounds/PickUp.wav" id="4_vhn1l"]
+[ext_resource type="AudioStream" uid="uid://676gat0rbo7g" path="res://Assets/Sounds/Explosion.wav" id="5_qakox"]
 
 [node name="Main" type="Node2D" unique_id=654165556]
 
 [node name="Playground" parent="." unique_id=758183905 instance=ExtResource("1_kqwn2")]
+
+[node name="AudioServer" type="Node" parent="." unique_id=987576846]
+script = ExtResource("2_vhn1l")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="AudioServer" unique_id=63366162]
+stream = ExtResource("2_os4jr")
+volume_db = -6.0
+
+[node name="Hit" type="AudioStreamPlayer" parent="AudioServer" unique_id=1765550438]
+stream = ExtResource("3_qakox")
+volume_db = -4.0
+
+[node name="PickUp" type="AudioStreamPlayer" parent="AudioServer" unique_id=1137328094]
+stream = ExtResource("4_vhn1l")
+volume_db = -10.0
+
+[node name="Explosion" type="AudioStreamPlayer" parent="AudioServer" unique_id=856286482]
+stream = ExtResource("5_qakox")
+volume_db = -10.0
 
 [node name="PostProcess" type="CanvasLayer" parent="." unique_id=1235643492]
 

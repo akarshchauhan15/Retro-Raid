@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 public partial class Pickable : Area2D
 {
@@ -28,6 +27,7 @@ public partial class Pickable : Area2D
         QueueFree();
 
         ApplyEffect(Body);
+        AudioServer.Play("Pickup");
     }
     public void ApplyEffect(Node2D Body)
     {
