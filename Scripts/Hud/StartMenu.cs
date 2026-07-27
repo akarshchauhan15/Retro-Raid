@@ -8,7 +8,7 @@ public partial class StartMenu : Control
     VBoxContainer GamemodeContainer;
 
     Button StartButton;
-    Button OptionsButton;
+    Button InfoButton;
     Button ScoresButton;
     Button ExitButton;
     Button BackButton;
@@ -26,7 +26,7 @@ public partial class StartMenu : Control
         GamemodeContainer = GetNode<VBoxContainer>("GamemodeContainer");
 
         StartButton = GetNode<Button>("ButtonContainer/StartButton");
-        OptionsButton = GetNode<Button>("ButtonContainer/OptionsButton");
+        InfoButton = GetNode<Button>("ButtonContainer/InfoButton");
         ScoresButton = GetNode<Button>("ButtonContainer/HBoxContainer/ScoresButton");
         ExitButton = GetNode<Button>("ButtonContainer/HBoxContainer/ExitButton");
         BackButton = GetNode<Button>("GamemodeContainer/BackButton");
@@ -41,6 +41,7 @@ public partial class StartMenu : Control
         StartButton.Pressed += SwitchContainers;
         BackButton.Pressed += SwitchContainers;
         ScoresButton.Pressed += ShowScoresMenu;
+        InfoButton.Pressed += GetNode<Control>("../InfoPage").Show;
         ExitButton.Pressed += ExitPanel.Show;
 
         GamemodeContainer.GetNode<Button>("Campaign").Pressed += PlayCampaign;
@@ -55,6 +56,7 @@ public partial class StartMenu : Control
     {
         Playground.CurrentGameMode = Playground.GameModes.Campaign;
         Hide();
+        SwitchContainers();
         Anim.Play("OverlayAppear");
         Playground.InitialStart();
         Playground.AddLevel();
@@ -66,6 +68,7 @@ public partial class StartMenu : Control
     {
         Playground.CurrentGameMode = Playground.GameModes.Zen;
         Hide();
+        SwitchContainers();
         Anim.Play("OverlayAppear");
         Playground.InitialStart();
 

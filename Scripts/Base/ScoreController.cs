@@ -18,12 +18,12 @@ public partial class ScoreController : Node
             case Playground.GameModes.Campaign:
                 CampaignScores.Add(new ScoreEntry(Score));
                 CampaignScores = CampaignScores.OrderByDescending(entry => entry.Score).Take(10).ToList();
-                return;
+                break;
 
             case Playground.GameModes.Zen:
                 EndlessScores.Add(new ScoreEntry(Score));
                 EndlessScores = EndlessScores.OrderByDescending(entry => entry.Score).Take(10).ToList();
-                return;
+                break;
         }
 
         SaveScores();

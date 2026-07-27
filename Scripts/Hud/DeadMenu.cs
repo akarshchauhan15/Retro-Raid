@@ -28,7 +28,7 @@ public partial class DeadMenu : Control
         }
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Appear");
     }
-    private void ResetGame()
+    public void ResetGame()
     {
         Hide();
         GetNode<Playground>("../../Playground").ResetGame();

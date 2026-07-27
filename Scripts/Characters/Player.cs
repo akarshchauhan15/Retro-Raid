@@ -119,6 +119,7 @@ public partial class Player : CharacterBody2D
     private void OnGameStarted(bool GameStarted)
     {
         Particles.Emitting = GameStarted;
+        Particles.Visible = GameStarted;
         DisableMovement =! GameStarted;
         CheckForCollisions = GameStarted;
     }

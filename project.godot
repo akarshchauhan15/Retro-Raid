@@ -30,6 +30,7 @@ ScoreController="*uid://dpp7e8crj67dy"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/sharp_corners=true
 window/stretch/mode="canvas_items"
 
 [dotnet]

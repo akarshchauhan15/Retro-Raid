@@ -152,6 +152,16 @@ public partial class Playground : Node2D
 
         AppendScores();
     }
+    public void ForceEndGame()
+    {
+        EmitSignal(Playground.SignalName.GameStateChanged, false);
+
+        JetTimer.Stop();
+        EnemyContainer.ProcessMode = ProcessModeEnum.Disabled;
+
+        SliderSpeed = 0;
+        isPlaying = false;
+    }
     private void AppendScores()
     {
         ScoreController.AddScores(Player.Score, CurrentGameMode);

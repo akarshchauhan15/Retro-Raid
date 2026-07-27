@@ -36,6 +36,8 @@ public partial class GameOverlay : Control
         Player.ShieldChanged += UpdateShields;
         Player.ShotsFired += StartCooldown;
         Player.Pickuped += AddEventHappened;
+
+        GetTree().Root.GetNode<Playground>("Main/Playground").GameStateChanged += (bool Started) => {if (!Started) Anim.Stop();};
     }
     public override void _Process(double delta)
     {

@@ -603,16 +603,6 @@ events = [SubResource("InputEventAction_60whd")]
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2ou8"]
 bg_color = Color(0.106743075, 0.12243209, 0.18451592, 1)
 
-[sub_resource type="InputEventKey" id="InputEventKey_2btik"]
-device = -1
-keycode = 4194305
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_60whd"]
-button_index = 1
-
-[sub_resource type="Shortcut" id="Shortcut_mfj1d"]
-events = [SubResource("InputEventKey_2btik"), SubResource("InputEventJoypadButton_60whd")]
-
 [node name="HUD" type="CanvasLayer" unique_id=704814869]
 
 [node name="StartMenu" type="Control" parent="." unique_id=1325218576]
@@ -677,11 +667,11 @@ layout_mode = 2
 theme = ExtResource("2_wgaer")
 text = "START"
 
-[node name="OptionsButton" type="Button" parent="StartMenu/ButtonContainer" unique_id=1671323554]
+[node name="InfoButton" type="Button" parent="StartMenu/ButtonContainer" unique_id=1671323554]
 custom_minimum_size = Vector2(200, 56)
 layout_mode = 2
 theme = ExtResource("2_wgaer")
-text = "OPTIONS"
+text = "INFO"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/ButtonContainer" unique_id=1041076256]
 layout_mode = 2
@@ -929,10 +919,7 @@ offset_top = 358.0
 offset_right = 604.0
 offset_bottom = 582.0
 
-[node name="Instantaneous" type="HBoxContainer" parent="PauseMenu/ButtonContainer" unique_id=493631076]
-layout_mode = 2
-
-[node name="ResumeButton" type="Button" parent="PauseMenu/ButtonContainer/Instantaneous" unique_id=1385167196]
+[node name="ResumeButton" type="Button" parent="PauseMenu/ButtonContainer" unique_id=1385167196]
 custom_minimum_size = Vector2(250, 72)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -1231,8 +1218,22 @@ texture_normal = ExtResource("13_60whd")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="Label" type="Label" parent="MenuSlide/ColorRect" unique_id=1984986744]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.6415477, 0.66300297, 0.7508764, 0.74509805)
+theme_override_font_sizes/font_size = 9
+text = "PRESS TWICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="InfoPage" type="Panel" parent="." unique_id=797876973]
-process_mode = 2
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -1307,18 +1308,19 @@ offset_bottom = 716.0
 theme_override_font_sizes/font_size = 24
 text = "v0.0.0"
 
-[node name="BackButton" type="Button" parent="InfoPage" unique_id=1724037892]
-custom_minimum_size = Vector2(250, 72)
-layout_mode = 0
-offset_left = 983.0
-offset_top = 620.0
-offset_right = 1233.0
-offset_bottom = 692.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.0
+[node name="BackButton" type="Button" parent="InfoPage" unique_id=751172223]
+custom_minimum_size = Vector2(200, 56)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -88.0
+offset_right = -29.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("2_wgaer")
-shortcut = SubResource("Shortcut_mfj1d")
-shortcut_feedback = false
-shortcut_in_tooltip = false
 text = "BACK"
