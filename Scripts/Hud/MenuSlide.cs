@@ -4,6 +4,7 @@ using System;
 public partial class MenuSlide : Slide
 {
     TextureButton FullscreenButton;
+    TextureButton SoundButton;
     TextureButton PauseButton;
     TextureButton ExitButton;
 
@@ -13,10 +14,12 @@ public partial class MenuSlide : Slide
         base._Ready();
 
         FullscreenButton = GetNode<TextureButton>("ColorRect/FullscreenButton");
+        SoundButton = GetNode<TextureButton>("ColorRect/SoundButton");
         PauseButton = GetNode<TextureButton>("ColorRect/PauseButton");
         ExitButton = GetNode<TextureButton>("ColorRect/ExitButton");
 
         FullscreenButton.Toggled += OnFullscreenButtonToggled;
+        SoundButton.Toggled += OnSoundButtonToggled;
         PauseButton.Toggled += OnPauseButtonToggled;
         ExitButton.Pressed += OnExitButtonPressed;
 
@@ -27,6 +30,10 @@ public partial class MenuSlide : Slide
     private void OnFullscreenButtonToggled(bool Fullscreen)
     {
         DisplayServer.WindowSetMode(Fullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+    }
+    private void OnSoundButtonToggled(bool EnableSound)
+    {
+        Godot.AudioServer.SetBusMute(0, !EnableSound);
     }
     private void OnPauseButtonToggled(bool Paused)
     {

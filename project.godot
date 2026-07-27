@@ -20,6 +20,10 @@ run/main_scene="uid://cp7tbdmlq1n36"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
 BaseMapDefaults="*res://Scripts/Map/BaseMapDefaults.cs"
