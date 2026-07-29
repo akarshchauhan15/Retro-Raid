@@ -29,6 +29,7 @@ buses/default_bus_layout=""
 BaseMapDefaults="*res://Scripts/Map/BaseMapDefaults.cs"
 ResourceBag="*uid://xj5fiky4d7he"
 ScoreController="*uid://dpp7e8crj67dy"
+ConfigController="*uid://bwrne27vpijp8"
 
 [display]
 
