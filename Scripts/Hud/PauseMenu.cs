@@ -16,16 +16,10 @@ public partial class PauseMenu : Panel
     {
         ResumeButton = GetNode<Button>("ButtonContainer/ResumeButton");
 
-        OptionsButton = GetNode<Button>("ButtonContainer/Preferences/OptionsButton");
-        ScoresButton = GetNode<Button>("ButtonContainer/Preferences/ScoresButton");
-        InfoButton = GetNode<Button>("ButtonContainer/Preferences/InfoButton");
-
-        MainMenuButton = GetNode<Button>("ButtonContainer/Quit/MainMenuButton");
-        ExitButton = GetNode<Button>("ButtonContainer/Quit/ExitButton");
+        MainMenuButton = GetNode<Button>("ButtonContainer/MainMenuButton");
+        ExitButton = GetNode<Button>("ButtonContainer/ExitButton");
 
         ResumeButton.Pressed += ToggleGameState;
-
-        InfoButton.Pressed += () => GetNode<Panel>("../InfoPage").Show();
 
         MainMenuButton.Pressed += OnMenuButtonPressed;
         ExitButton.Pressed += () => GetNode<Panel>("../ExitPanel").Show();
