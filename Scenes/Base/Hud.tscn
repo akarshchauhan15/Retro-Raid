@@ -1107,6 +1107,7 @@ text = "NO"
 
 [node name="MenuSlide" parent="." unique_id=685437201 instance=ExtResource("6_v4pvl")]
 process_mode = 3
+z_index = 1
 offset_left = -63.0
 offset_right = 23.0
 offset_bottom = 720.0

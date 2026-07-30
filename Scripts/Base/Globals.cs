@@ -4,13 +4,14 @@ using Godot.Collections;
 
 public class GameConstants
 {
-    public enum ScoreEnum { ShipHit, HelicopterHit, TankHit, JetHit, BridgeHit }
+    public enum ScoreEnum { ShipHit, HelicopterHit, TankHit, JetHit, BridgeHit, LevelCompleted}
     public static Dictionary<ScoreEnum, int> ScoreValues = new Dictionary<ScoreEnum, int> {
         {ScoreEnum.ShipHit, 20},
-        {ScoreEnum.HelicopterHit,  15},
+        {ScoreEnum.HelicopterHit,  25},
         {ScoreEnum.TankHit, 15},
         {ScoreEnum.JetHit, 30},
         {ScoreEnum.BridgeHit, 40},
+        {ScoreEnum.LevelCompleted, 30},
     };
 }
 

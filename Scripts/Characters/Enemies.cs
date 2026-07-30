@@ -18,7 +18,9 @@ public partial class Enemies : Area2D
     [Export]
     float ShootingTimePeriod = 2.0f;
     [Export]
-    float FireInaccuracy = 0.2f;
+    public float BulletSpeed = 400.0f;
+    [Export]
+    public float FireInaccuracy = 0.2f;
     [Export]
     bool Flying = false;
     [Export]
@@ -106,6 +108,7 @@ public partial class Enemies : Area2D
     private void Shoot()
     {
         Bullet NewBullet = ResourceBag.BulletScene.Instantiate<Bullet>();
+        NewBullet.Speed = BulletSpeed;
 
         float Inaccuracy = (float) GD.RandRange(-1d, 1d) * FireInaccuracy;
 

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cm62wb8h3icqd" path="res://Scenes/Level/BaseLevel.tscn" id="1_jd1qw"]
 
 [node name="BaseLevel" unique_id=480106617 instance=ExtResource("1_jd1qw")]
+FireSpeedMultiplier = 1.1
 
 [node name="Background" parent="." index="0" unique_id=1945926150]
 position = Vector2(640, -9280)

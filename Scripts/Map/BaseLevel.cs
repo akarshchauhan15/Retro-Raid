@@ -4,10 +4,15 @@ using System.Threading.Tasks;
 
 public partial class BaseLevel : Node2D
 {
+
     [Export]
     public bool JetsEnabled = false;
-    Area2D FinishLine;
+    [Export]
+    public float FireInaccuracyMultiplier = 1;
+    [Export]
+    public float FireSpeedMultiplier = 1;
 
+    Area2D FinishLine;
     GameOverlay Overlay;
     Playground Playground;
 
@@ -34,6 +39,7 @@ public partial class BaseLevel : Node2D
         tween.SetParallel(false);
 
         await Overlay.Prompt("Finish", true, true);
+        ((Player)Body).AddScore(GameConstants.ScoreValues[GameConstants.ScoreEnum.LevelCompleted]);
         ResetLevel();
     }
     private async Task ResetLevel()

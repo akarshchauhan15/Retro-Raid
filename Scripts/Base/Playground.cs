@@ -69,13 +69,13 @@ public partial class Playground : Node2D
         LevelContainer.AddChild(LevelScene);
         LevelScene.GlobalPosition = Vector2.Up * 720 * 3;
         
-        SpawnFixedPresetEnemy("Ship", LevelScene.GetNode<Node2D>("SpawnPositions/Ship"));
-        SpawnFixedPresetEnemy("Tank", LevelScene.GetNode<Node2D>("SpawnPositions/Tank"));
+        SpawnFixedPresetEnemy("Ship", LevelScene.GetNode<Node2D>("SpawnPositions/Ship"), LevelScene);
+        SpawnFixedPresetEnemy("Tank", LevelScene.GetNode<Node2D>("SpawnPositions/Tank"), LevelScene);
 
         SetPresetPickable(Pickable.PickableType.Fuel, LevelScene.GetNode<Node2D>("SpawnPositions/Fuel"));
         SetPresetPickable(Pickable.PickableType.Shield, LevelScene.GetNode<Node2D>("SpawnPositions/Shield"));
 
-        if (CurrentLevel >= 3) JetTimer.Start();
+        if (LevelScene.JetsEnabled) JetTimer.Start();
     }
     public void SpawnModularMapComponent(Vector2 SacrificedPosition)
     {
@@ -181,13 +181,16 @@ public partial class Playground : Node2D
         Enemy.GlobalPosition = RefPosition;
         return Enemy;
     }
-    private void SpawnFixedPresetEnemy(string EnemyType, Node2D MarkerContainer)
+    private void SpawnFixedPresetEnemy(string EnemyType, Node2D MarkerContainer, BaseLevel LevelScene)
     {
         foreach (Marker2D Marker in MarkerContainer.GetChildren())
         {
             Enemies Enemy = ResourceBag.EnemyScenes[EnemyType].Instantiate<Enemies>();
             EnemyContainer.AddChild(Enemy);
             Enemy.GlobalPosition = Marker.GlobalPosition;
+
+            Enemy.FireInaccuracy *= LevelScene.FireInaccuracyMultiplier;
+            Enemy.BulletSpeed *= LevelScene.FireSpeedMultiplier;
         }
     }
     private void SetPresetPickable(Pickable.PickableType Type, Node2D MarkerContainer)
