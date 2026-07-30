@@ -149,11 +149,11 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/normal_font = ExtResource("1_tcxq3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "You'll take control of a fighter jet, sent to wreak havoc in fields of opposing forces.
+text = "You'll take control of a fighter jet, sent to [color=d2423e]wreak havoc[/color] in fields of opposing forces.
 
-You can play either in campaign or endless mode.
+You can play either in [color=7097de]campaign[/color] or [color=6dd299]endless[/color] mode.
 
-Your jet needs fuel and only source of refueling is hunting down enemy reserves."
+Your jet needs [color=dfe77b]fuel[/color] and only source of refueling is hunting down enemy reserves."
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
@@ -203,15 +203,16 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/normal_font = ExtResource("1_tcxq3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "In the land beyond, there lie a number of foe ready to hunt you down. You need to dodge past them or blast them off your way.
+text = "In the land beyond, there lie a number of foe ready to [color=d27a62]hunt[/color] you down. You need to dodge past them or blast them off your way.
 
-Your jet can only sustain a few shots till it falls. Additionally a shield can be used to defend, but it lasts only one hit.
-"
+Your jet can only sustain a few shots till it falls. Additionally a [color=93ccfe]shield[/color] can be used to defend, but it lasts only one hit.
+
+Some enemies are airborne and can crash into you!"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="4" type="Control" parent="Pages" unique_id=577085070]
+[node name="4" type="Control" parent="Pages" unique_id=310352225]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -220,7 +221,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="RichTextLabel" parent="Pages/4" unique_id=1322264687]
+[node name="Title" type="RichTextLabel" parent="Pages/4" unique_id=1390275833]
+clip_contents = false
+layout_mode = 1
+offset_left = 38.0
+offset_top = 37.0
+offset_right = 1019.0
+offset_bottom = 112.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.167969, 0.167969, 0.167969, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("1_tcxq3")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[outline_color=000000]GAMEPLAY [/outline_color][outline_size=10][color=373737]MECHANICS #3[/color]"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 2
+
+[node name="Label" type="RichTextLabel" parent="Pages/4" unique_id=1971537260]
+clip_contents = false
+layout_mode = 1
+offset_left = 80.0
+offset_top = 224.0
+offset_right = 1207.0
+offset_bottom = 584.0
+theme_override_colors/font_shadow_color = Color(0.167969, 0.167969, 0.167969, 1)
+theme_override_constants/line_separation = 10
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/normal_font = ExtResource("1_tcxq3")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "In [color=6dd299]endless[/color] mode, some enemies may drop pickables, i.e. [color=dfe77b]fuel[/color], [color=e9a1c3]health[/color] or [color=93ccfe]shield[/color]. Pick 'em up to continue even further.
+
+However, in [color=7097de]campaign[/color] mode, these are already placed across levels except [color=e9a1c3]health[/color] pickup.
+
+After the game ends, top 10 scores for each mode are saved. View them in the scores menu."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="5" type="Control" parent="Pages" unique_id=577085070]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="Pages/5" unique_id=1322264687]
 clip_contents = false
 layout_mode = 1
 offset_left = 38.0
@@ -240,7 +295,7 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
 
-[node name="Label" type="RichTextLabel" parent="Pages/4" unique_id=1350114434]
+[node name="Label" type="RichTextLabel" parent="Pages/5" unique_id=1350114434]
 clip_contents = false
 layout_mode = 1
 offset_left = 80.0
@@ -267,7 +322,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="5" type="Control" parent="Pages" unique_id=335618779]
+[node name="6" type="Control" parent="Pages" unique_id=335618779]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -276,7 +331,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="RichTextLabel" parent="Pages/5" unique_id=1850393536]
+[node name="Title" type="RichTextLabel" parent="Pages/6" unique_id=1850393536]
 clip_contents = false
 layout_mode = 1
 offset_left = 38.0
@@ -296,7 +351,7 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
 
-[node name="Label" type="RichTextLabel" parent="Pages/5" unique_id=173902525]
+[node name="Label" type="RichTextLabel" parent="Pages/6" unique_id=173902525]
 clip_contents = false
 layout_mode = 1
 offset_left = 80.0
@@ -321,7 +376,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="6" type="Control" parent="Pages" unique_id=1356475446]
+[node name="7" type="Control" parent="Pages" unique_id=1356475446]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -330,7 +385,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="RichTextLabel" parent="Pages/6" unique_id=1491296784]
+[node name="Title" type="RichTextLabel" parent="Pages/7" unique_id=1491296784]
 clip_contents = false
 layout_mode = 1
 offset_left = 38.0
@@ -350,7 +405,7 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
 
-[node name="Label" type="RichTextLabel" parent="Pages/6" unique_id=2014426623]
+[node name="Label" type="RichTextLabel" parent="Pages/7" unique_id=2014426623]
 clip_contents = false
 layout_mode = 1
 offset_left = 80.0
