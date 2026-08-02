@@ -89,6 +89,7 @@ public partial class Player : CharacterBody2D
         Texture.Scale = 2 * Vector2.One;
         Fuel = 100f;
         Health = 3;
+        Shield = 1;
         AddScore(-Score);
     }
     private void Kill(string Cause)
@@ -121,8 +122,8 @@ public partial class Player : CharacterBody2D
     {
         Particles.Emitting = GameStarted;
         Particles.Visible = GameStarted;
-        DisableMovement =! GameStarted;
         CheckForCollisions = GameStarted;
+        if (!GameStarted) DisableMovement = true;
     }
     private void CheckMovement(double delta)
     {

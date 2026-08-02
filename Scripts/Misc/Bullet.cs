@@ -11,7 +11,6 @@ public partial class Bullet : Area2D
         GetNode<Timer>("Timer").Timeout += Fall;
         AreaEntered += OnCollision;
         BodyEntered += OnCollision;
-        GD.Print(Speed);
     }
     public override void _Process(double delta)
     {

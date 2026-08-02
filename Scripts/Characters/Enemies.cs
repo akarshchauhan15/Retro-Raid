@@ -68,7 +68,7 @@ public partial class Enemies : Area2D
         Player.AddScore(GameConstants.ScoreValues[EnemySpecificScoreEnum]);
 
         AnimatedSprite2D Explosion = ResourceBag.ExplosionEffectScene.Instantiate<AnimatedSprite2D>();
-        GetParent().AddChild(Explosion);
+        GetNode("../../").AddChild(Explosion);
         Explosion.GlobalPosition = GlobalPosition;
 
         if (DeadSpriteExists)
@@ -80,7 +80,7 @@ public partial class Enemies : Area2D
             if (GetNode<Sprite2D>("Turret").Texture != null)
             GetNode<Sprite2D>("Turret").Frame = 1;
 
-            AudioServer.Play("Explosion");
+            AudioServer.Play("Explosion"); 
         }
         else 
         {

@@ -27,7 +27,7 @@ public partial class Pickable : Area2D
         QueueFree();
 
         ApplyEffect(Body);
-        AudioServer.Play("Pickup");
+        AudioServer.Play("PickUp");
     }
     public void ApplyEffect(Node2D Body)
     {
