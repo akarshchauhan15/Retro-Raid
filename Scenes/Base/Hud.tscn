@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://5dfyjpfgihmy" path="res://Assets/VectorArt/Icons/Exit.svg" id="13_60whd"]
 [ext_resource type="Texture2D" uid="uid://b4sukiupciyxo" path="res://Assets/VectorArt/Icons/SoundEnabled.svg" id="16_f52nw"]
 [ext_resource type="Texture2D" uid="uid://bh4mmr07k4bx0" path="res://Assets/VectorArt/Icons/SoundDisabled.svg" id="17_xt1ba"]
+[ext_resource type="Texture2D" uid="uid://vuy5y82hj73e" path="res://Assets/RasterArt/Exported/Icon.png" id="20_xt1ba"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q87le"]
 bg_color = Color(0.22264019, 0.21104774, 0.32104602, 1)
@@ -1264,6 +1265,15 @@ theme_override_fonts/font = ExtResource("4_p2ou8")
 theme_override_font_sizes/font_size = 120
 text = "RETRO RAID"
 uri = "https://www.github.com/akarshchauhan15/Retro-Raid"
+
+[node name="TextureRect" type="TextureRect" parent="InfoPage" unique_id=1548415965]
+layout_mode = 0
+offset_left = 877.0
+offset_top = 67.0
+offset_right = 994.0
+offset_bottom = 169.0
+texture = ExtResource("20_xt1ba")
+stretch_mode = 4
 
 [node name="Description" type="Label" parent="InfoPage" unique_id=1873826705]
 layout_mode = 0
