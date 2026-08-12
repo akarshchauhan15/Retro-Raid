@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cdt6ks3en53e1" path="res://Scenes/Map/Airport.tscn" id="2_6qj1y"]
 [ext_resource type="PackedScene" uid="uid://e3gha282lp5m" path="res://Scenes/Characters/Player.tscn" id="2_o0c3l"]
 [ext_resource type="PackedScene" uid="uid://ck1koutreiit4" path="res://Scenes/Map/Centre.tscn" id="3_vgxkg"]
+[ext_resource type="Script" uid="uid://dnbr51f3wf86i" path="res://Scripts/Base/Camera.cs" id="5_q1vot"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_q1vot"]
 b = Vector2(0, 720)
@@ -269,6 +270,7 @@ unique_name_in_owner = true
 [node name="Camera" type="Camera2D" parent="." unique_id=799571054]
 unique_name_in_owner = true
 position = Vector2(640, 360)
+script = ExtResource("5_q1vot")
 
 [node name="Timers" type="Node" parent="." unique_id=55083844]
 

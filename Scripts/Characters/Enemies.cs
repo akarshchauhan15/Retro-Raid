@@ -87,6 +87,7 @@ public partial class Enemies : Area2D
             QueueFree();
             AudioServer.Play("Hit");
         }
+        Player.Camera.InitiateShake(2, 6);
 
         if (SpawnPickableOnFree == null) return;
         AddPickable();

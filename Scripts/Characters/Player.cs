@@ -17,7 +17,7 @@ public partial class Player : CharacterBody2D
     [Signal]
     public delegate void PickupedEventHandler(int Type);
 
-    Camera2D Camera;
+    public Camera Camera;
     Area2D AutoAimZone;
     Sprite2D Texture;
     GpuParticles2D Particles;
@@ -40,7 +40,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        Camera = GetNode<Camera2D>("%Camera");
+        Camera = GetNode<Camera>("%Camera");
         AutoAimZone = GetNode<Area2D>("AutoAimZone");
         Texture = GetNode<Sprite2D>("Sprite2D");
         Particles = GetNode<GpuParticles2D>("Particles");
@@ -66,6 +66,7 @@ public partial class Player : CharacterBody2D
     {   
         if (!CheckForCollisions) return;
 
+        Camera.InitiateShake();
         AudioServer.Play("Hit");
         if (Shield > 0)
         {
