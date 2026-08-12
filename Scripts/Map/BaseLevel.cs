@@ -38,7 +38,9 @@ public partial class BaseLevel : Node2D
 
         tween.SetParallel(false);
 
-        await Overlay.Prompt("Finish", true, true);
+        string PromptOnEnd = Playground.CurrentLevel >= Playground.TotalLevel ? "Completed" : "Finish";
+        await Overlay.Prompt(PromptOnEnd, true, true);
+
         ((Player)Body).AddScore(GameConstants.ScoreValues[GameConstants.ScoreEnum.LevelCompleted]);
         ResetLevel();
     }
@@ -59,6 +61,8 @@ public partial class BaseLevel : Node2D
         }
 
         Playground.CurrentLevel += 1;
+        if (Playground.CurrentLevel > Playground.TotalLevel) { EndCampaign(); return; }
+
         Playground.AddLevel();
 
         Playground.SliderSpeed = 300.0f;
@@ -71,6 +75,15 @@ public partial class BaseLevel : Node2D
         Playground.isPlaying = true;
         Player.DisableMovement = false;
         Player.CheckForCollisions = true;
+
+        QueueFree();
+    }
+    private void EndCampaign()
+    {
+        Playground.ForceEndGame();
+        Playground.GetNode<DeadMenu>("../HUD/DeadMenu").ResetGame();
+
+        Overlay.Anim.Play("Unfade");
 
         QueueFree();
     }

@@ -23,6 +23,7 @@ public partial class Playground : Node2D
     public enum GameModes {Campaign, Zen}
     public static GameModes CurrentGameMode;
     public static int CurrentLevel = 1;
+    public int TotalLevel = 4;
 
     public override void _Ready()
     {   
@@ -137,6 +138,7 @@ public partial class Playground : Node2D
         }
         Player.ResetStats();
         NextMapPackedComponent = BaseMapDefaults.ModularLevelScenes[0];
+        CurrentLevel = 1;
     }
     private void EndGame(string Cause)
     {   
