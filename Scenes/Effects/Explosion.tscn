@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bcjlqavndt3me"]
 
 [ext_resource type="Texture2D" uid="uid://cbghfm1585vsa" path="res://Assets/RasterArt/Exported/Explosion.png" id="1_itj65"]
+[ext_resource type="Script" uid="uid://dl04awqb1gryl" path="res://Scripts/Effects/Explosion.cs" id="2_jy6od"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jy6od"]
 atlas = ExtResource("1_itj65")
@@ -129,3 +130,4 @@ animation = &"Explode"
 autoplay = "Explode"
 frame = 15
 frame_progress = 1.0
+script = ExtResource("2_jy6od")
