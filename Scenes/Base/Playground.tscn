@@ -120,6 +120,18 @@ tracks/2/keys = {
 "points": PackedFloat32Array(500, 0, 0, 0.43333328, 0.5, 560, -0.70000005, 1, 0.25, 0),
 "times": PackedFloat32Array(0.73333335, 2.499479)
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 0.96666664, 1.8666667, 2.2333333),
+"transitions": PackedFloat32Array(1, -0.8122525, 1, 1.2745608, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.13962634015954636, -0.17453292519943295, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_pkvjg"]
 length = 0.001
@@ -168,6 +180,18 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_jg8fe"]

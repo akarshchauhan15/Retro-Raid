@@ -630,24 +630,27 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 100.0
+offset_left = 81.5
 offset_top = 93.0
-offset_right = 539.0
-offset_bottom = 198.0
+offset_right = 557.5
+offset_bottom = 208.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_p2ou8")
 theme_override_font_sizes/font_size = 76
 text = "RETRO RAID"
+vertical_alignment = 1
 
 [node name="Subheader" type="Label" parent="StartMenu/Header" unique_id=1797425564]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -212.5
-offset_top = 95.0
-offset_right = 352.5
-offset_bottom = 115.0
+offset_left = -237.5
+offset_top = 97.0
+offset_right = 327.5
+offset_bottom = 117.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_p2ou8")
 theme_override_font_sizes/font_size = 14
 text = "A synthwave styled remake of River Raid™ by Activision®"
 
@@ -659,10 +662,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -17.0
 offset_right = 13.0
-offset_bottom = 19.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.09019608, 0.12156863, 0.18431373, 0.627451)
+color = Color(0.08203125, 0.097991064, 0.125, 0.627451)
 
 [node name="ButtonContainer" type="VBoxContainer" parent="StartMenu" unique_id=244626580]
 custom_minimum_size = Vector2(340, 0)
