@@ -6,6 +6,7 @@ public partial class LevelPickable : Pickable
     public override void _Ready()
     {
         BodyEntered += OnPlayerEntered;
+        GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").ScreenExited += QueueFree;
     }
     public override void Initialize(PickableType Type)
     {

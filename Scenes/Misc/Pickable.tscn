@@ -17,3 +17,5 @@ shape = SubResource("RectangleShape2D_anrdx")
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("1_a8dy4")
 hframes = 3
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2060386944]

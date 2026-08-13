@@ -10,6 +10,7 @@ public partial class Pickable : Area2D
     public override void _Ready()
     {
         BodyEntered += OnPlayerEntered;
+        GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").ScreenExited += QueueFree;
 
         Tween tween = CreateTween();
         tween.SetParallel();

@@ -35,8 +35,8 @@ public partial class Enemies : Area2D
         Player = GetTree().Root.GetNode<Player>("Main/Playground/Player");
 
         if (this is not Helicopter){
-            Projectiles = GetNodeOrNull("../../Pickables");
-            Pickables = GetNodeOrNull("../../Projectiles");
+            Projectiles = GetNodeOrNull("../../Projectiles");
+            Pickables = GetNodeOrNull("../../Pickables");
         }
 
         BodyEntered += OnCollisionWithPlayer;
